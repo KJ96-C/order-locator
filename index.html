@@ -466,6 +466,7 @@ details.raw pre{
       </div>
     </div>
     <div class="top-actions">
+      <button class="icon-btn" id="btnSync" title="同步设置" aria-label="同步设置" type="button">☁</button>
       <button class="icon-btn" id="btnDiag" title="识别诊断" aria-label="识别诊断">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 12h3.5l2-6 3.5 12 2.5-6H21"/>
@@ -682,6 +683,22 @@ details.raw pre{
 </div>
 
 <!-- 识别诊断 -->
+<div class="sheet" id="syncSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <h2>同步设置</h2>
+    <button class="icon-btn" id="syncSheetClose" aria-label="关闭" type="button">✕</button>
+  </div>
+  <p class="sheet-tip">把在 GitHub 生成的 token 粘贴到这里。只保存在当前浏览器，不会上传到仓库。</p>
+  <div class="field">
+    <label for="ghTokenInput">GitHub Token</label>
+    <input id="ghTokenInput" placeholder="粘贴以 github_pat_ 开头的字符" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="btn-row" style="margin-top:14px">
+    <button class="btn btn-ghost" id="btnSaveToken" type="button">保存到本机</button>
+    <button class="btn btn-ghost danger" id="btnClearToken" type="button">清除</button>
+  </div>
+  <p class="hint" id="tokenHint">尚未保存 token</p>
+</div>
 <div class="sheet" id="diagSheet" aria-hidden="true">
   <div class="sheet-head">
     <h2>识别诊断</h2>
@@ -741,6 +758,70 @@ details.raw pre{
   var MAX_RECORDS = 500;
 
   var state = {
+    /* ---------- GitHub Issues 同步 ---------- */
+var GH_OWNER = 'KJ96-C';
+var GH_REPO = 'order-locator';
+var GH_LABEL = 'order-record';
+var GH_API = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/issues';
+
+function ghToken() {
+  return localStorage.getItem('gh_token') || '';
+}
+
+function updateTokenHint() {
+  var el = $('#tokenHint');
+  if (!el) return;
+  el.textContent = ghToken() ? '已保存 token，页面会自动尝试同步' : '尚未保存 token，当前仅本地保存';
+  el.style.color = ghToken() ? 'var(--mint-dark)' : 'var(--ink3)';
+}
+
+async function pullFromGitHub() {
+  var token = ghToken();
+  if (!token) return;
+  try {
+    var res = await fetch(GH_API + '?labels=' + GH_LABEL + '&state=open&per_page=100', {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if (!res.ok) return;
+    var issues = await res.json();
+    var changed = false;
+    issues.forEach(function (issue) {
+      var body;
+      try { body = JSON.parse(issue.body || ''); } catch (e) { return; }
+      if (!body.id || state.records.some(function (r) { return r.id === body.id; })) return;
+      state.records.push(body);
+      changed = true;
+    });
+    if (changed) {
+      persist();
+      renderAll();
+    }
+  } catch (e) {
+    console.warn('从 GitHub 拉取失败', e);
+  }
+}
+
+async function pushToGitHub(rec) {
+  var token = ghToken();
+  if (!token) return;
+  try {
+    await fetch(GH_API, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: rec.code || '未填写单号',
+        body: JSON.stringify(rec),
+        labels: [GH_LABEL, 'area:' + rec.area]
+      })
+    });
+  } catch (e) {
+    console.warn('推送到 GitHub 失败', e);
+  }
+}
     areas: DEFAULT_AREAS.slice(),
     records: [],
     view: 'scan',
@@ -1094,6 +1175,7 @@ details.raw pre{
     resetForm(true);
     haptic();
     $('#main').scrollTo({ top: 0, behavior: 'smooth' });
+    pushToGitHub(rec);
     toast('已归位到 ' + rec.area, {
       label: '撤销',
       fn: function () {
@@ -2669,6 +2751,26 @@ details.raw pre{
       renderDiag();
       openSheet($('#diagSheet'));
     });
+    $('#btnSync').addEventListener('click', function () {
+    $('#ghTokenInput').value = ghToken();
+      updateTokenHint();
+      openSheet($('#syncSheet'));
+    });
+    $('#syncSheetClose').addEventListener('click', closeSheets);
+    $('#btnSaveToken').addEventListener('click', function () {
+      var v = $('#ghTokenInput').value.trim();
+      if (!v) { toast('请先粘贴 token'); return; }
+      localStorage.setItem('gh_token', v);
+      updateTokenHint();
+      toast('token 已保存到本机');
+      pullFromGitHub();
+   });
+   $('#btnClearToken').addEventListener('click', function () {
+     localStorage.removeItem('gh_token');
+   $('#ghTokenInput').value = '';
+     updateTokenHint();
+     toast('token 已清除，页面恢复纯本地模式');
+   });
     $('#diagSheetClose').addEventListener('click', closeSheets);
     $('#envHelp').addEventListener('click', function () {
       renderDiag();
@@ -2712,6 +2814,8 @@ details.raw pre{
     }
 
     refreshEngineUI();
+    updateTokenHint();
+    pullFromGitHub();
     setTimeout(function () {
       ensureLib().then(function () {
         refreshEngineUI();
