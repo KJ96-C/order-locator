@@ -1260,6 +1260,15 @@ details.raw pre{
 
   var OCR_SOURCES = [
     {
+      id: 'local',
+      label: '本地资源',
+      script: './tesseract/tesseract.min.js',
+      workerPath: './tesseract/worker.min.js',
+      corePath: './tesseract/core/',
+      langPath: './tesseract/lang',
+      langs: 'chi_sim+eng'
+    },
+    {
       id: 'unpkg',
       label: 'unpkg',
       script: 'https://unpkg.com/tesseract.js@' + OCR_LIB_VERSION + '/dist/tesseract.min.js',
