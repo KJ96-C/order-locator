@@ -441,6 +441,15 @@ details.raw pre{
 }
 .switch[aria-pressed="true"]{background:var(--mint);}
 .switch[aria-pressed="true"] i{left:22px;}
+
+/* ---------- 云同步 ---------- */
+.cloud-form .field{margin-bottom:10px;}
+.cloud-status{
+  margin-top:12px;font-size:12px;color:var(--mint-dark);background:var(--mint-soft);
+  border-radius:10px;padding:8px 10px;min-height:18px;white-space:pre-wrap;word-break:break-all;
+}
+.cloud-status:empty{display:none;}
+.cloud-status.err{color:#a94442;background:#fdf0ef;}
 </style>
 </head>
 <body>
@@ -466,7 +475,6 @@ details.raw pre{
       </div>
     </div>
     <div class="top-actions">
-      <button class="icon-btn" id="btnSync" title="同步设置" aria-label="同步设置" type="button">☁</button>
       <button class="icon-btn" id="btnDiag" title="识别诊断" aria-label="识别诊断">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 12h3.5l2-6 3.5 12 2.5-6H21"/>
@@ -476,6 +484,12 @@ details.raw pre{
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
           <rect x="3.5" y="13.5" width="7" height="7" rx="2"/><path d="M17 14v6M14 17h6"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="btnCloud" title="云同步" aria-label="云同步">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6.5 18a4.5 4.5 0 1 1 .62-8.95A6 6 0 0 1 18.8 12.6 3.7 3.7 0 0 1 17.5 18H6.5Z"/>
+          <path d="M12 12.5V18M9.5 15.5 12 18l2.5-2.5"/>
         </svg>
       </button>
     </div>
@@ -494,7 +508,7 @@ details.raw pre{
         <button class="banner-btn" id="envHelp" type="button">说明</button>
       </div>
 
-      <div class="sec-title"><span>识别订单</span><span class="light" id="engineState">OCR · 检测中</span></div>
+      <div class="sec-title"><span>识别订单</span><span class="light" id="engineState">OCR · 正在初始化…</span></div>
 
       <div class="capture" id="drop" role="button" tabindex="0" aria-label="选择订单图片">
         <div class="cap-icon">
@@ -683,22 +697,6 @@ details.raw pre{
 </div>
 
 <!-- 识别诊断 -->
-<div class="sheet" id="syncSheet" aria-hidden="true">
-  <div class="sheet-head">
-    <h2>同步设置</h2>
-    <button class="icon-btn" id="syncSheetClose" aria-label="关闭" type="button">✕</button>
-  </div>
-  <p class="sheet-tip">把在 GitHub 生成的 token 粘贴到这里。只保存在当前浏览器，不会上传到仓库。</p>
-  <div class="field">
-    <label for="ghTokenInput">GitHub Token</label>
-    <input id="ghTokenInput" placeholder="粘贴以 github_pat_ 开头的字符" autocomplete="off" spellcheck="false">
-  </div>
-  <div class="btn-row" style="margin-top:14px">
-    <button class="btn btn-ghost" id="btnSaveToken" type="button">保存到本机</button>
-    <button class="btn btn-ghost danger" id="btnClearToken" type="button">清除</button>
-  </div>
-  <p class="hint" id="tokenHint">尚未保存 token</p>
-</div>
 <div class="sheet" id="diagSheet" aria-hidden="true">
   <div class="sheet-head">
     <h2>识别诊断</h2>
@@ -741,6 +739,40 @@ details.raw pre{
   </div>
 </div>
 
+<!-- 云同步 -->
+<div class="sheet" id="cloudSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <h2>云同步 · GitHub Issues</h2>
+    <button class="icon-btn" id="cloudSheetClose" aria-label="关闭">✕</button>
+  </div>
+  <p class="sheet-tip">把每条记录存成 GitHub 仓库的一个 Issue，实现多设备同步。配置一次，之后点「立即同步」即可。</p>
+
+  <div class="cloud-form">
+    <div class="field"><label for="ghOwner">仓库所有者（用户名）</label><input id="ghOwner" placeholder="如 your-name" autocomplete="off" spellcheck="false"></div>
+    <div class="field"><label for="ghRepo">仓库名</label><input id="ghRepo" placeholder="如 order-records" autocomplete="off" spellcheck="false"></div>
+    <div class="field"><label for="ghToken">访问令牌（Personal Access Token）</label><input id="ghToken" type="password" placeholder="ghp_… 或 github_pat_…" autocomplete="off" spellcheck="false"></div>
+    <div class="field"><label for="ghLabel">标签（用于区分本应用记录）</label><input id="ghLabel" placeholder="order-locator" autocomplete="off" spellcheck="false"></div>
+  </div>
+
+  <div class="btn-row" style="margin-top:12px">
+    <button class="btn btn-primary" id="btnSyncNow" type="button">立即同步</button>
+    <button class="btn btn-ghost" id="btnCloudSave" type="button">保存配置</button>
+  </div>
+  <button class="btn btn-ghost btn-sm danger" id="btnCloudClear" type="button" style="margin-top:10px">清除云配置</button>
+
+  <div class="cloud-status" id="cloudStatus"></div>
+
+  <div class="diag-tip" style="margin-top:12px">
+    <b>第一次怎么配置（约 3 分钟）</b>
+    <ol>
+      <li>在 GitHub 新建（或选用）一个仓库，记下“用户名”和“仓库名”。</li>
+      <li>右上角头像 → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token，勾选 repo 权限，复制生成的 token。</li>
+      <li>把三项填到上面 → 点「保存配置」→ 点「立即同步」。</li>
+      <li>其他设备同样填这三项后点「立即同步」，即可互相看到记录。</li>
+    </ol>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite">
   <span id="toastMsg"></span>
   <button id="toastAction" hidden type="button"></button>
@@ -758,70 +790,6 @@ details.raw pre{
   var MAX_RECORDS = 500;
 
   var state = {
-    /* ---------- GitHub Issues 同步 ---------- */
-var GH_OWNER = 'KJ96-C';
-var GH_REPO = 'order-locator';
-var GH_LABEL = 'order-record';
-var GH_API = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/issues';
-
-function ghToken() {
-  return localStorage.getItem('gh_token') || '';
-}
-
-function updateTokenHint() {
-  var el = $('#tokenHint');
-  if (!el) return;
-  el.textContent = ghToken() ? '已保存 token，页面会自动尝试同步' : '尚未保存 token，当前仅本地保存';
-  el.style.color = ghToken() ? 'var(--mint-dark)' : 'var(--ink3)';
-}
-
-async function pullFromGitHub() {
-  var token = ghToken();
-  if (!token) return;
-  try {
-    var res = await fetch(GH_API + '?labels=' + GH_LABEL + '&state=open&per_page=100', {
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-    });
-    if (!res.ok) return;
-    var issues = await res.json();
-    var changed = false;
-    issues.forEach(function (issue) {
-      var body;
-      try { body = JSON.parse(issue.body || ''); } catch (e) { return; }
-      if (!body.id || state.records.some(function (r) { return r.id === body.id; })) return;
-      state.records.push(body);
-      changed = true;
-    });
-    if (changed) {
-      persist();
-      renderAll();
-    }
-  } catch (e) {
-    console.warn('从 GitHub 拉取失败', e);
-  }
-}
-
-async function pushToGitHub(rec) {
-  var token = ghToken();
-  if (!token) return;
-  try {
-    await fetch(GH_API, {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Accept': 'application/vnd.github+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        title: rec.code || '未填写单号',
-        body: JSON.stringify(rec),
-        labels: [GH_LABEL, 'area:' + rec.area]
-      })
-    });
-  } catch (e) {
-    console.warn('推送到 GitHub 失败', e);
-  }
-}
     areas: DEFAULT_AREAS.slice(),
     records: [],
     view: 'scan',
@@ -831,7 +799,8 @@ async function pushToGitHub(rec) {
     pending: null,
     busy: false,
     template: null,
-    useTemplate: true
+    useTemplate: true,
+    gh: null
   };
 
   /* ---------------- 基础工具 ---------------- */
@@ -894,6 +863,14 @@ async function pushToGitHub(rec) {
         }
       }
       if (data && typeof data.useTemplate === 'boolean') state.useTemplate = data.useTemplate;
+      if (data && data.gh && typeof data.gh === 'object') {
+        state.gh = {
+          owner: typeof data.gh.owner === 'string' ? data.gh.owner : '',
+          repo: typeof data.gh.repo === 'string' ? data.gh.repo : '',
+          token: typeof data.gh.token === 'string' ? data.gh.token : '',
+          label: typeof data.gh.label === 'string' ? data.gh.label : 'order-locator'
+        };
+      }
       if (data && Array.isArray(data.records)) {
         state.records = data.records.filter(function (r) {
           return r && typeof r === 'object' && r.id && r.area && r.createdAt;
@@ -906,7 +883,8 @@ async function pushToGitHub(rec) {
             weight: r.weight || '',
             area: String(r.area),
             createdAt: Number(r.createdAt) || Date.now(),
-            thumb: typeof r.thumb === 'string' ? r.thumb : ''
+            thumb: typeof r.thumb === 'string' ? r.thumb : '',
+            gh: typeof r.gh === 'number' ? r.gh : null
           };
         });
       }
@@ -922,14 +900,16 @@ async function pushToGitHub(rec) {
         if (i < keepThumbs || !r.thumb) return r;
         return {
           id: r.id, code: r.code, customer: r.customer, count: r.count,
-          weight: r.weight, area: r.area, createdAt: r.createdAt, thumb: ''
+          weight: r.weight, area: r.area, createdAt: r.createdAt, thumb: '',
+          gh: r.gh
         };
       });
       localStorage.setItem(STORE_KEY, JSON.stringify({
         areas: state.areas,
         records: records,
         template: state.template,
-        useTemplate: state.useTemplate
+        useTemplate: state.useTemplate,
+        gh: state.gh
       }));
     } catch (e) {
       console.warn('保存失败', e);
@@ -1166,7 +1146,8 @@ async function pushToGitHub(rec) {
       weight: $('#fWeight').value.trim(),
       area: state.area,
       createdAt: Date.now(),
-      thumb: state.pending ? state.pending.thumb : ''
+      thumb: state.pending ? state.pending.thumb : '',
+      gh: null
     };
     state.records.unshift(rec);
     if (state.records.length > MAX_RECORDS) state.records.length = MAX_RECORDS;
@@ -1175,7 +1156,6 @@ async function pushToGitHub(rec) {
     resetForm(true);
     haptic();
     $('#main').scrollTo({ top: 0, behavior: 'smooth' });
-    pushToGitHub(rec);
     toast('已归位到 ' + rec.area, {
       label: '撤销',
       fn: function () {
@@ -1194,12 +1174,14 @@ async function pushToGitHub(rec) {
     persist();
     renderAll();
     closeSheets();
+    if (rec.gh) { closeIssue(rec.gh).catch(function (e) { console.warn('关闭云端记录失败', e); }); }
     toast('已删除 ' + (rec.code || '该记录'), {
       label: '撤销',
       fn: function () {
         state.records.push(rec);
         persist();
         renderAll();
+        if (rec.gh) { reopenIssue(rec.gh).catch(function (e) { console.warn('恢复云端记录失败', e); }); }
         toast('已恢复');
       }
     });
@@ -1341,6 +1323,8 @@ async function pushToGitHub(rec) {
   var OCR_CORE_VERSION = '5.1.1';
 
   var OCR_SOURCES = [
+    // 本地离线引擎（可选）：若与本文件同目录存在 tesseract/ 文件夹即可完全离线识别；
+    // 文件夹不存在时会自动跳过，回退到下面的远程线路。
     {
       id: 'local',
       label: '本地资源',
@@ -1474,7 +1458,7 @@ async function pushToGitHub(rec) {
     }, function (err) {
       ENGINE.loading = null;
       ENGINE.loadingState = false;
-      ENGINE.error = '识别引擎脚本无法加载（网络受限）';
+      ENGINE.error = '识别引擎加载失败：请联网后重试（或放入本地 tesseract 资源）';
       logEvent('脚本全部失败：' + (err && err.message ? err.message : err));
       refreshEngineUI();
       throw new Error(ENGINE.error);
@@ -2751,27 +2735,17 @@ async function pushToGitHub(rec) {
       renderDiag();
       openSheet($('#diagSheet'));
     });
-    $('#btnSync').addEventListener('click', function () {
-    $('#ghTokenInput').value = ghToken();
-      updateTokenHint();
-      openSheet($('#syncSheet'));
-    });
-    $('#syncSheetClose').addEventListener('click', closeSheets);
-    $('#btnSaveToken').addEventListener('click', function () {
-      var v = $('#ghTokenInput').value.trim();
-      if (!v) { toast('请先粘贴 token'); return; }
-      localStorage.setItem('gh_token', v);
-      updateTokenHint();
-      toast('token 已保存到本机');
-      pullFromGitHub();
-   });
-   $('#btnClearToken').addEventListener('click', function () {
-     localStorage.removeItem('gh_token');
-   $('#ghTokenInput').value = '';
-     updateTokenHint();
-     toast('token 已清除，页面恢复纯本地模式');
-   });
     $('#diagSheetClose').addEventListener('click', closeSheets);
+
+    $('#btnCloud').addEventListener('click', function () {
+      renderCloudSheet();
+      openSheet($('#cloudSheet'));
+    });
+    $('#cloudSheetClose').addEventListener('click', closeSheets);
+    $('#btnSyncNow').addEventListener('click', syncNow);
+    $('#btnCloudSave').addEventListener('click', saveCloudConfig);
+    $('#btnCloudClear').addEventListener('click', clearCloudConfig);
+
     $('#envHelp').addEventListener('click', function () {
       renderDiag();
       openSheet($('#diagSheet'));
@@ -2799,6 +2773,245 @@ async function pushToGitHub(rec) {
     });
   }
 
+  /* ---------------- 云同步（GitHub Issues 当作云数据库） ---------------- */
+
+  var GH_API = 'https://api.github.com';
+  var cloudSyncing = false;
+
+  function ghConfig() {
+    var c = state.gh;
+    if (!c || !c.owner || !c.repo || !c.token) return null;
+    return {
+      owner: String(c.owner).trim(),
+      repo: String(c.repo).trim(),
+      token: String(c.token).trim(),
+      label: (c.label && String(c.label).trim()) || 'order-locator'
+    };
+  }
+
+  function ghFetch(cfg, path, method, body) {
+    var opts = {
+      method: method || 'GET',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': 'Bearer ' + cfg.token,
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    };
+    if (body !== undefined && body !== null) {
+      opts.headers['Content-Type'] = 'application/json';
+      opts.body = JSON.stringify(body);
+    }
+    return fetch(GH_API + path, opts).then(function (res) {
+      return res.json().catch(function () { return null; }).then(function (j) {
+        if (!res.ok) {
+          var msg = 'GitHub 接口错误 ' + res.status;
+          if (j && j.message) msg += '：' + j.message;
+          throw new Error(msg);
+        }
+        return j;
+      });
+    });
+  }
+
+  function issueTitle(r) {
+    var s = (r.code || '无单号') + (r.customer ? ' · ' + r.customer : '');
+    return s.length > 120 ? s.slice(0, 120) : s;
+  }
+
+  function issueBody(r) {
+    return JSON.stringify({
+      v: 1,
+      code: r.code || '',
+      customer: r.customer || '',
+      count: r.count || '',
+      weight: r.weight || '',
+      area: r.area || '',
+      createdAt: Number(r.createdAt) || Date.now()
+    });
+  }
+
+  function parseIssueBody(it) {
+    var r;
+    try { r = JSON.parse(it.body); } catch (e) { return null; }
+    if (!r || typeof r !== 'object') return null;
+    return {
+      gh: it.number,
+      code: r.code || '',
+      customer: r.customer || '',
+      count: r.count || '',
+      weight: r.weight || '',
+      area: r.area || '',
+      createdAt: Number(r.createdAt) || (it.created_at ? new Date(it.created_at).getTime() : Date.now()),
+      thumb: ''
+    };
+  }
+
+  function listIssues(cfg) {
+    var label = encodeURIComponent(cfg.label);
+    var all = [];
+    var page = 1;
+    function next() {
+      var path = '/repos/' + cfg.owner + '/' + cfg.repo +
+        '/issues?labels=' + label + '&state=all&per_page=100&page=' + page;
+      return ghFetch(cfg, path).then(function (items) {
+        if (!items || !items.length) return all;
+        items.forEach(function (it) {
+          if (it && !it.pull_request) all.push(it);
+        });
+        if (items.length < 100) return all;
+        page += 1;
+        return next();
+      });
+    }
+    return next();
+  }
+
+  function createIssue(cfg, r) {
+    return ghFetch(cfg, '/repos/' + cfg.owner + '/' + cfg.repo + '/issues', 'POST', {
+      title: issueTitle(r),
+      body: issueBody(r),
+      labels: [cfg.label]
+    }).then(function (j) {
+      return j && j.number;
+    });
+  }
+
+  function closeIssue(num) {
+    var cfg = ghConfig();
+    if (!cfg) return Promise.reject(new Error('未配置云同步'));
+    return ghFetch(cfg, '/repos/' + cfg.owner + '/' + cfg.repo + '/issues/' + num, 'PATCH', { state: 'closed' });
+  }
+
+  function reopenIssue(num) {
+    var cfg = ghConfig();
+    if (!cfg) return Promise.reject(new Error('未配置云同步'));
+    return ghFetch(cfg, '/repos/' + cfg.owner + '/' + cfg.repo + '/issues/' + num, 'PATCH', { state: 'open' });
+  }
+
+  function setCloudStatus(msg, isError) {
+    var el = $('#cloudStatus');
+    if (!el) return;
+    el.textContent = msg || '';
+    el.className = 'cloud-status' + (isError ? ' err' : '');
+  }
+
+  function syncNow() {
+    var cfg = ghConfig();
+    if (!cfg) {
+      setCloudStatus('请先填写并保存 GitHub 配置', true);
+      toast('请先填写云同步配置');
+      return;
+    }
+    if (cloudSyncing) { toast('正在同步，请稍候'); return; }
+    cloudSyncing = true;
+    setCloudStatus('正在连接 GitHub…');
+
+    return listIssues(cfg).then(function (issues) {
+      var openMap = {};
+      var closed = {};
+      issues.forEach(function (it) {
+        var rec = parseIssueBody(it);
+        if (!rec) return;
+        if (it.state === 'closed') closed[rec.gh] = true;
+        else openMap[rec.gh] = rec;
+      });
+
+      var changed = false;
+      // 云端已删除（issue 关闭）→ 本地同步删除
+      state.records = state.records.filter(function (r) {
+        if (r.gh && closed[r.gh]) { changed = true; return false; }
+        return true;
+      });
+
+      // 云端记录合并到本地（已有 gh 的记录以云端为准）
+      var byGh = {};
+      state.records.forEach(function (r) { if (r.gh) byGh[r.gh] = r; });
+      Object.keys(openMap).forEach(function (num) {
+        var cloud = openMap[num];
+        var numInt = Number(num);
+        if (byGh[numInt]) {
+          var idx = state.records.indexOf(byGh[numInt]);
+          var local = byGh[numInt];
+          state.records[idx] = {
+            id: local.id,
+            code: cloud.code,
+            customer: cloud.customer,
+            count: cloud.count,
+            weight: cloud.weight,
+            area: cloud.area,
+            createdAt: cloud.createdAt,
+            thumb: local.thumb || '',
+            gh: numInt
+          };
+          changed = true;
+        } else {
+          cloud.id = uid();
+          state.records.unshift(cloud);
+          changed = true;
+        }
+      });
+
+      // 本地没有 gh 的记录 → 上传创建 issue
+      var toPush = state.records.filter(function (r) { return !r.gh; });
+      var chain = Promise.resolve();
+      toPush.forEach(function (r) {
+        chain = chain.then(function () {
+          setCloudStatus('上传中… ' + (r.code || r.customer || '无单号'));
+          return createIssue(cfg, r).then(function (num) {
+            if (num) { r.gh = num; changed = true; }
+          });
+        }).then(function () {
+          return new Promise(function (resolve) { setTimeout(resolve, 300); });
+        });
+      });
+
+      return chain.then(function () {
+        if (changed) { persist(); renderAll(); }
+        cloudSyncing = false;
+        setCloudStatus('同步完成 · 共 ' + state.records.length + ' 条记录');
+        toast('同步完成');
+      });
+    }).catch(function (err) {
+      cloudSyncing = false;
+      var msg = (err && err.message) ? err.message : '同步失败';
+      setCloudStatus(msg, true);
+      toast('同步失败：' + msg);
+    });
+  }
+
+  function renderCloudSheet() {
+    var c = state.gh || {};
+    $('#ghOwner').value = c.owner || '';
+    $('#ghRepo').value = c.repo || '';
+    $('#ghToken').value = c.token || '';
+    $('#ghLabel').value = c.label || '';
+    setCloudStatus('');
+  }
+
+  function saveCloudConfig() {
+    var owner = $('#ghOwner').value.trim();
+    var repo = $('#ghRepo').value.trim();
+    var token = $('#ghToken').value.trim();
+    var label = $('#ghLabel').value.trim() || 'order-locator';
+    if (!owner || !repo || !token) {
+      setCloudStatus('请填写用户名、仓库名和令牌', true);
+      toast('请填写用户名、仓库名和令牌');
+      return;
+    }
+    state.gh = { owner: owner, repo: repo, token: token, label: label };
+    persist();
+    setCloudStatus('配置已保存');
+    toast('云同步配置已保存');
+  }
+
+  function clearCloudConfig() {
+    state.gh = null;
+    persist();
+    renderCloudSheet();
+    toast('已清除云同步配置');
+  }
+
   /* ---------------- 启动 ---------------- */
 
   function init() {
@@ -2811,11 +3024,17 @@ async function pushToGitHub(rec) {
 
     if (location.protocol === 'file:') {
       showEnvBanner('本地文件模式下识别可能失败', '浏览器会禁止 file:// 页面的 OCR 线程。请双击「启动服务.bat」用 http://localhost 打开，或部署到服务器后访问。');
+      // 首次以 file:// 打开时，自动弹出一次“解决办法”，避免用户不知道卡住的原因
+      setTimeout(function () {
+        if (!envHintShown) {
+          envHintShown = true;
+          renderDiag();
+          openSheet($('#diagSheet'));
+        }
+      }, 800);
     }
 
     refreshEngineUI();
-    updateTokenHint();
-    pullFromGitHub();
     setTimeout(function () {
       ensureLib().then(function () {
         refreshEngineUI();
