@@ -442,6 +442,81 @@ details.raw pre{
 .switch[aria-pressed="true"]{background:var(--mint);}
 .switch[aria-pressed="true"] i{left:22px;}
 
+/* ---------- 批量识别 / 暂存区 / 多选 ---------- */
+.batch-panel{margin-top:2px;}
+.batch-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:9px;}
+.batch-head b{font-size:14.5px;letter-spacing:.2px;}
+.batch-head span{font-size:11.5px;color:var(--ink3);}
+.batch-tools{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px;}
+.batch-list{display:flex;flex-direction:column;gap:6px;max-height:44vh;overflow-y:auto;padding-right:2px;}
+.bcode{display:flex;align-items:center;gap:9px;background:#fbfefd;border:1px solid var(--line);border-radius:11px;padding:9px 11px;transition:.16s;}
+.bcode.on{border-color:var(--mint);background:var(--mint-soft);}
+.bcode .ck,.stage-row .ck,.rec-ck{
+  width:20px;height:20px;flex:none;border-radius:6px;border:1.6px solid #cfe7e1;
+  background:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:11px;line-height:1;color:#fff;transition:.16s;
+}
+.bcode.on .ck,.stage-row.on .ck,.rec-ck.on{background:var(--mint);border-color:var(--mint);}
+.bcode .code{flex:1;min-width:0;font-size:13.5px;font-weight:700;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bcode .tag{flex:none;font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px;background:var(--blue-soft);color:#2b6cb0;}
+.bcode .tag.dup{background:#f1f5f4;color:var(--ink3);}
+.stage-list{display:flex;flex-direction:column;gap:7px;max-height:46vh;overflow-y:auto;padding-right:2px;}
+.stage-search{
+  display:flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);
+  border-radius:14px;padding:0 10px 0 12px;margin-top:10px;transition:.18s;
+}
+.stage-search:focus-within{border-color:var(--mint);box-shadow:0 0 0 4px rgba(46,196,166,.1);}
+.stage-search svg{width:17px;height:17px;color:var(--ink3);flex:none;}
+.stage-search input{
+  flex:1;border:0;outline:none;background:transparent;padding:12px 0;min-width:0;
+  font-size:16px;font-weight:700;letter-spacing:1px;color:var(--ink);
+}
+.stage-search input::placeholder{font-weight:500;font-size:13.5px;color:#bccfca;letter-spacing:0;}
+.stage-search .clear{
+  width:26px;height:26px;flex:none;border:0;border-radius:50%;background:#f2f8f6;color:var(--ink3);
+  font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;
+}
+.stage-search .clear:active{background:var(--danger-soft);color:var(--danger);}
+.term-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.term-chip{
+  display:flex;align-items:center;gap:4px;background:var(--mint-soft);border:1px solid #cdeee4;
+  color:var(--mint-dark);border-radius:999px;padding:4px 6px 4px 10px;
+  font-size:12.5px;font-weight:700;letter-spacing:.6px;
+}
+.term-chip button{
+  width:18px;height:18px;flex:none;border:0;border-radius:50%;background:transparent;
+  color:var(--mint-dark);font-size:11px;line-height:1;padding:0;
+}
+.term-chip button:active{background:rgba(46,196,166,.22);}
+.stage-match{margin:8px 2px 0;font-size:11.5px;color:var(--ink3);line-height:1.55;}
+.stage-match b{color:var(--mint-dark);}
+.stage-row{display:flex;align-items:center;gap:9px;background:#fbfefd;border:1px solid var(--line);border-radius:12px;padding:10px 11px;transition:.16s;}
+.stage-row.on{border-color:var(--mint);background:var(--mint-soft);}
+.stage-row .code{flex:1;min-width:0;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.stage-row .meta{flex:none;font-size:10.5px;color:var(--ink3);}
+.rec-toolbar{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;}
+.sel-bar{
+  display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--mint);
+  border-radius:14px;padding:8px 12px;margin-top:10px;font-size:12.5px;
+}
+.sel-bar span{flex:1;font-weight:700;color:var(--mint-dark);min-width:0;}
+.sel-bar .link-btn{padding:2px 0;}
+.rec.checked{background:var(--mint-soft);border-color:#cdeee4;}
+.rec-check{width:22px;height:22px;flex:none;margin-right:-2px;}
+.area-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.area-pick button{
+  border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:11px 4px;
+  font-size:13px;font-weight:700;color:var(--ink2);transition:.16s;
+}
+.area-pick button:active{transform:scale(.95);}
+.area-pick button.on{background:linear-gradient(145deg,#3ad9b7,#18b091);border-color:transparent;color:#fff;}
+.empty-mini{padding:20px 12px;text-align:center;color:var(--ink3);font-size:12.5px;}
+.paste-box{width:100%;min-height:150px;border:1.5px solid var(--line);border-radius:13px;background:#fbfefd;padding:11px 12px;font-size:13px;line-height:1.7;color:var(--ink);outline:none;resize:vertical;}
+.paste-box:focus{border-color:var(--mint);background:#fff;box-shadow:0 0 0 4px rgba(46,196,166,.1);}
+.dup-item{display:flex;align-items:center;gap:9px;background:#fbfefd;border:1px solid var(--line);border-radius:11px;padding:9px 11px;font-size:12.5px;}
+.dup-item b{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.dup-item span{flex:none;color:var(--ink3);font-size:11px;}
+
 /* ---------- 云同步 ---------- */
 .cloud-form .field{margin-bottom:10px;}
 .cloud-status{
@@ -519,7 +594,7 @@ details.raw pre{
         </div>
         <div class="cap-title">拍照识别订单</div>
         <div class="cap-sub">点击选择图片，也可以拖拽或粘贴截图</div>
-        <div class="cap-note">识别单号 / 件数 / 克重，再选区域归位</div>
+        <div class="cap-note">支持整张列表截图：一次识别多行批号</div>
       </div>
       <input type="file" id="camInput" accept="image/*" capture="environment" hidden>
       <input type="file" id="fileInput" accept="image/*" hidden>
@@ -547,6 +622,7 @@ details.raw pre{
           <div class="crop" id="crop" hidden></div>
         </div>
         <div class="preview-tools">
+          <button class="tool" id="btnBatchScan" type="button">批量识别列表</button>
           <button class="tool" id="btnScanAll" type="button">全图识别</button>
           <button class="tool" id="btnCropMode" type="button">框选识别</button>
           <button class="tool" id="btnRange" type="button">固定区域</button>
@@ -556,7 +632,7 @@ details.raw pre{
           <img class="tpl-thumb" id="tplThumb" alt="固定区域预览">
           <div class="tpl-info">
             <b id="tplTitle">固定区域 · 批号行</b>
-            <span id="tplDesc">批号 / 委托单位 · 自动</span>
+            <span id="tplDesc">批号 / 外在装货物品 · 自动</span>
           </div>
           <button class="tpl-toggle" id="tplToggle" type="button">自动：开</button>
         </div>
@@ -577,26 +653,38 @@ details.raw pre{
           <span>识别结果</span>
           <span class="conf" id="confTag" hidden>置信度 --</span>
         </div>
+
+        <!-- 批量识别：一行一个批号，可勾选后整批存入暂存区 -->
+        <div class="batch-panel" id="batchPanel" hidden>
+          <div class="batch-head">
+            <b id="batchCount">识别到 0 个批号</b>
+            <span id="batchNote"></span>
+          </div>
+          <div class="batch-tools">
+            <button class="tool" id="btnBatchAll" type="button">全选</button>
+            <button class="tool" id="btnBatchNone" type="button">全不选</button>
+            <button class="tool" id="btnBatchPaste" type="button">粘贴文字补批号</button>
+          </div>
+          <div class="batch-list" id="batchList"></div>
+          <p class="hint" id="batchHint">勾选要保留的批号，点「存入暂存区」；已录入过的批号会自动去重跳过。</p>
+          <div class="btn-row" style="margin-top:10px">
+            <button class="btn btn-primary btn-sm" id="btnBatchStage" type="button" disabled>存入暂存区</button>
+            <button class="btn btn-ghost btn-sm" id="btnBatchClear" type="button">清空列表</button>
+          </div>
+        </div>
+
         <div class="candidates" id="candidates" hidden></div>
         <div class="form-grid">
           <div class="field span2">
-            <label for="fCode">单号 / 批号</label>
-            <input id="fCode" placeholder="如 PX32811015983" autocomplete="off" spellcheck="false">
-          </div>
-          <div class="field">
-            <label for="fCount">件数</label>
-            <input id="fCount" inputmode="numeric" placeholder="0" autocomplete="off">
-          </div>
-          <div class="field">
-            <label for="fWeight">克重 (g)</label>
-            <input id="fWeight" inputmode="decimal" placeholder="0.00" autocomplete="off">
+            <label for="fCode">批号 / 单号</label>
+            <input id="fCode" placeholder="如 PX32611016594" autocomplete="off" spellcheck="false">
           </div>
           <div class="field span2">
-            <label for="fCustomer">委托单位 / 客户</label>
-            <input id="fCustomer" placeholder="如 西藏星选" autocomplete="off">
+            <label for="fItem">外在装货物品</label>
+            <input id="fItem" placeholder="如 白框 / 黑袋" autocomplete="off">
           </div>
         </div>
-        <p class="hint" id="ocrHint">杂项太多？点「固定区域」只识别批号那一行；临时识别某块可点「框选识别」。</p>
+        <p class="hint" id="ocrHint">整张列表截图请点「批量识别列表」；只识别批号那一行可点「固定区域」。</p>
       </div>
 
       <div class="sec-title"><span>选择存放区域</span><span class="light" id="areaHint">未选择</span></div>
@@ -612,6 +700,12 @@ details.raw pre{
         <button class="btn btn-ghost" id="btnReset">清空</button>
       </div>
       <p class="hint" id="saveHint">识别后核对字段，选择区域即可保存。</p>
+
+      <div class="sec-title"><span>暂存区</span><span class="light" id="stageQuick">0 个待归位</span></div>
+      <div class="range-item" style="margin-bottom:0">
+        <span>批量识别的批号先存这里，之后一起归到同一区域</span>
+        <button class="tool" id="btnQuickStage" type="button">打开暂存区</button>
+      </div>
     </section>
 
     <!-- ============ 记录视图 ============ -->
@@ -626,7 +720,18 @@ details.raw pre{
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
           <circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>
         </svg>
-        <input id="searchInput" placeholder="搜索单号 / 客户 / 区域" autocomplete="off">
+        <input id="searchInput" placeholder="搜索批号 / 外在装货物品 / 区域" autocomplete="off">
+      </div>
+
+      <div class="rec-toolbar">
+        <button class="tool" id="btnMulti" type="button">批量改区</button>
+        <button class="tool" id="btnDedupe" type="button">去重整理</button>
+      </div>
+      <div class="sel-bar" id="selBar" hidden>
+        <span id="selInfo">已选 0 条</span>
+        <button class="link-btn" id="btnSelAll" type="button">全选</button>
+        <button class="link-btn" id="btnSelNone" type="button">取消</button>
+        <button class="tool" id="btnSelArea" type="button" style="padding:6px 10px">改区域</button>
       </div>
 
       <div class="chip-row" id="filterRow"></div>
@@ -649,6 +754,38 @@ details.raw pre{
       </div>
     </section>
 
+    <!-- ============ 暂存区 ============ -->
+    <section class="view" id="view-stage">
+      <div class="sec-title"><span>暂存区</span><span class="light" id="stageTotal">0 个批号</span></div>
+      <p class="hint" style="margin-top:0">批量识别得到的批号先放在这里，不占区域；按批号后几位搜索，系统会自动勾选，再整批归位。</p>
+
+      <div class="stage-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+          <circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>
+        </svg>
+        <input id="stageSearch" placeholder="输入后 4 位，空格或逗号可加多个" autocomplete="off" spellcheck="false" enterkeyhint="done">
+        <button class="clear" id="stageSearchClear" type="button" aria-label="清除搜索" hidden>✕</button>
+      </div>
+      <div class="term-row" id="stageTerms" hidden></div>
+      <p class="stage-match" id="stageMatch">输入后几位后按空格、逗号或回车，可以再加一个不同的尾号；匹配到的批号会自动勾选。</p>
+
+      <div class="card" style="margin-top:10px">
+        <div class="batch-tools" style="margin-bottom:10px">
+          <button class="tool" id="btnStageAll" type="button">全选</button>
+          <button class="tool" id="btnStageNone" type="button">全不选</button>
+          <button class="tool" id="btnStageDel" type="button">删除所选</button>
+        </div>
+        <div class="stage-list" id="stageList"></div>
+        <div class="empty-mini" id="stageEmpty" hidden>暂存区是空的<br>先在「定位」页批量识别，或手动录入一个批号</div>
+      </div>
+
+      <div class="sec-title"><span>归入区域</span><span class="light" id="stagePick">已选 0 个</span></div>
+      <div class="area-grid" id="stageAreaGrid"></div>
+      <button class="btn btn-primary" id="btnStageAssign" type="button" style="margin-top:14px" disabled>批量归位</button>
+      <button class="btn btn-ghost danger" id="btnStageClear" type="button" style="margin-top:10px">清空暂存区</button>
+      <p class="hint" id="stageHint">勾选批号 → 选区域 → 批量归位。归位后仍可在「记录」页继续改区域。</p>
+    </section>
+
   </main>
 
   <nav class="tabbar" aria-label="主导航">
@@ -658,6 +795,13 @@ details.raw pre{
         <path d="M5.6 5.6 7.7 7.7M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" opacity=".55"/>
       </svg>
       <span>定位</span>
+    </button>
+    <button class="tab" data-view="stage" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 4 3.5 8.4 12 12.8l8.5-4.4L12 4Z"/><path d="M3.5 12.6 12 17l8.5-4.4"/><path d="M3.5 16.8 12 21.2l8.5-4.4"/>
+      </svg>
+      <span>暂存</span>
+      <span class="tab-badge" id="stageBadge">0</span>
     </button>
     <button class="tab" data-view="records" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -696,6 +840,43 @@ details.raw pre{
   <div id="detailBody"></div>
 </div>
 
+<!-- 批量改区 -->
+<div class="sheet" id="bulkAreaSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <h2>改到哪个区域</h2>
+    <button class="icon-btn" id="bulkAreaClose" aria-label="关闭">✕</button>
+  </div>
+  <p class="sheet-tip" id="bulkAreaTip">点一个区域，所选记录会一次性改过去。</p>
+  <div class="area-pick" id="bulkAreaPick"></div>
+  <div class="btn-row" style="margin-top:14px">
+    <button class="btn btn-ghost" id="bulkAreaCancel" type="button">取消</button>
+  </div>
+</div>
+
+<!-- 去重整理 -->
+<div class="sheet" id="dedupeSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <h2>去重整理</h2>
+    <button class="icon-btn" id="dedupeClose" aria-label="关闭">✕</button>
+  </div>
+  <div id="dedupeBody"></div>
+  <button class="btn btn-primary" id="btnDedupeApply" type="button" style="margin-top:10px">合并重复（保留首次）</button>
+</div>
+
+<!-- 粘贴文字补批号 -->
+<div class="sheet" id="pasteSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <h2>粘贴文字补批号</h2>
+    <button class="icon-btn" id="pasteClose" aria-label="关闭">✕</button>
+  </div>
+  <p class="sheet-tip">从微信、表格或记事本复制的文字直接粘贴进来，每行一个批号也可以。</p>
+  <textarea class="paste-box" id="pasteText" placeholder="例如：&#10;PX32611016594&#10;PX32611016591&#10;A326112101796"></textarea>
+  <div class="btn-row" style="margin-top:12px">
+    <button class="btn btn-primary" id="btnPasteParse" type="button">加入识别列表</button>
+    <button class="btn btn-ghost" id="btnPasteCancel" type="button">取消</button>
+  </div>
+</div>
+
 <!-- 识别诊断 -->
 <div class="sheet" id="diagSheet" aria-hidden="true">
   <div class="sheet-head">
@@ -712,7 +893,7 @@ details.raw pre{
     <h2>识别范围</h2>
     <button class="icon-btn" id="rangeSheetClose" aria-label="关闭">✕</button>
   </div>
-  <p class="sheet-tip">同一版式单据建议锁定固定区域：只识别左上角批号、委托单位，速度快、无杂项。</p>
+  <p class="sheet-tip">同一版式单据建议锁定固定区域：只识别批号那一行（或整列批号），速度快、无杂项。</p>
 
   <div class="range-item">
     <span>当前固定区域</span>
@@ -732,7 +913,7 @@ details.raw pre{
   <div class="diag-tip" style="margin-top:14px">
     <b>怎么选区域</b>
     <ol>
-      <li>点「在图上框选固定区域」，拖出一个矩形，只包住批号与委托单位那一行。</li>
+      <li>点「在图上框选固定区域」，拖出一个矩形，只包住批号那一行或整列批号。</li>
       <li>区域按比例保存，之后同类单据拍照会自动套用，不必每次重新框。</li>
       <li>单据位置有偏移时，框选时上下各留出一点余量。</li>
     </ol>
@@ -787,7 +968,10 @@ details.raw pre{
 
   var STORE_KEY = 'order-locator.v1';
   var DEFAULT_AREAS = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3'];
-  var MAX_RECORDS = 500;
+  var MAX_RECORDS = 2000;
+  var MAX_BATCH = 500;            // 单次最多识别的批号数量
+  var CODE_MIN_DIGITS = 8;        // 批号里最少连续数字位数
+  var CODE_WHITELIST = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // 批量识别只出字母数字，减少杂字
 
   var state = {
     areas: DEFAULT_AREAS.slice(),
@@ -800,7 +984,20 @@ details.raw pre{
     busy: false,
     template: null,
     useTemplate: true,
-    gh: null
+    gh: null,
+    // 批量识别
+    batch: [],          // [{ code, checked, dup, dupArea, dupAt }]
+    batchInfo: null,    // { text, conf, ms, tiles, found, skipped }
+    batchBusy: false,
+    // 暂存区
+    stageArea: null,
+    stageSel: {},
+    stageTerms: [],
+    stageDraft: '',
+    stageAutoSig: '',
+    // 记录页多选
+    multi: false,
+    pick: {}
   };
 
   /* ---------------- 基础工具 ---------------- */
@@ -873,15 +1070,15 @@ details.raw pre{
       }
       if (data && Array.isArray(data.records)) {
         state.records = data.records.filter(function (r) {
-          return r && typeof r === 'object' && r.id && r.area && r.createdAt;
+          return r && typeof r === 'object' && r.id && r.createdAt && (r.area || r.staged);
         }).map(function (r) {
+          // 兼容旧数据：customer → item；件数/克重已移除，直接丢弃
           return {
             id: String(r.id),
             code: r.code || '',
-            customer: r.customer || '',
-            count: r.count || '',
-            weight: r.weight || '',
-            area: String(r.area),
+            item: r.item || r.customer || '',
+            area: r.staged === true ? '' : String(r.area || ''),
+            staged: r.staged === true,
             createdAt: Number(r.createdAt) || Date.now(),
             thumb: typeof r.thumb === 'string' ? r.thumb : '',
             gh: typeof r.gh === 'number' ? r.gh : null
@@ -899,9 +1096,8 @@ details.raw pre{
       var records = state.records.slice(0, MAX_RECORDS).map(function (r, i) {
         if (i < keepThumbs || !r.thumb) return r;
         return {
-          id: r.id, code: r.code, customer: r.customer, count: r.count,
-          weight: r.weight, area: r.area, createdAt: r.createdAt, thumb: '',
-          gh: r.gh
+          id: r.id, code: r.code, item: r.item, area: r.area, staged: !!r.staged,
+          createdAt: r.createdAt, thumb: '', gh: r.gh
         };
       });
       localStorage.setItem(STORE_KEY, JSON.stringify({
@@ -1002,27 +1198,61 @@ details.raw pre{
     row.appendChild(b);
   }
 
+  var firstIdByCode = Object.create(null);
+  var codeCount = Object.create(null);
+
+  function codeKey(code) { return String(code || '').replace(/\s+/g, '').toUpperCase(); }
+
+  function buildFirstMap() {
+    firstIdByCode = Object.create(null);
+    codeCount = Object.create(null);
+    state.records.forEach(function (r) {
+      if (r.staged) return;
+      var k = codeKey(r.code);
+      if (!k) return;
+      codeCount[k] = (codeCount[k] || 0) + 1;
+      var cur = firstIdByCode[k];
+      if (!cur || r.createdAt < cur.createdAt) firstIdByCode[k] = r;
+    });
+  }
+
+  function findRecordByCode(code) {
+    var k = codeKey(code);
+    if (!k) return null;
+    var best = null;
+    state.records.forEach(function (r) {
+      if (codeKey(r.code) !== k) return;
+      if (!best || r.createdAt < best.createdAt) best = r;
+    });
+    return best;
+  }
+
   function recordMatches(r, q) {
+    if (r.staged) return false;
     if (state.filter !== 'all' && r.area !== state.filter) return false;
     if (!q) return true;
-    return [r.code, r.customer, r.area, r.note].filter(Boolean).join(' ').toLowerCase().indexOf(q) >= 0;
+    return [r.code, r.item, r.area].filter(Boolean).join(' ').toLowerCase().indexOf(q) >= 0;
   }
 
   function recordEl(r) {
     var el = document.createElement('div');
-    el.className = 'rec';
+    el.className = 'rec' + (state.pick[r.id] ? ' checked' : '');
     el.setAttribute('role', 'button');
     el.tabIndex = 0;
+    el.dataset.id = r.id;
+
+    var firstTag = (codeCount[codeKey(r.code)] > 1 && firstIdByCode[codeKey(r.code)] === r)
+      ? '<span class="rec-pill">首次录入</span>' : '';
+
     el.innerHTML =
+      (state.multi ? '<span class="rec-ck' + (state.pick[r.id] ? ' on' : '') + '">✓</span>' : '') +
       '<div class="rec-area">' + esc(r.area) + '</div>' +
       '<div class="rec-main">' +
         '<div class="rec-top">' +
-          '<span class="rec-code">' + esc(r.code || '未填写单号') + '</span>' +
-          (r.count ? '<span class="rec-pill">' + esc(r.count) + ' 件</span>' : '') +
+          '<span class="rec-code">' + esc(r.code || '未填写批号') + '</span>' + firstTag +
         '</div>' +
         '<div class="rec-meta">' + esc(timeStr(r.createdAt)) +
-          (r.weight ? ' · ' + esc(r.weight) + ' g' : '') +
-          (r.customer ? ' · ' + esc(r.customer) : '') +
+          (r.item ? ' · ' + esc(r.item) : '') +
         '</div>' +
       '</div>' +
       (r.thumb ? '<img class="rec-thumb" src="' + r.thumb + '" alt="订单照片">' : '') +
@@ -1030,10 +1260,14 @@ details.raw pre{
 
     el.addEventListener('click', function (e) {
       if (e.target.closest('.rec-del')) return;
+      if (state.multi) { togglePick(r.id); return; }
       openDetail(r.id);
     });
     el.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(r.id); }
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (state.multi) togglePick(r.id); else openDetail(r.id);
+      }
     });
     el.querySelector('.rec-del').addEventListener('click', function (e) {
       e.stopPropagation();
@@ -1042,9 +1276,44 @@ details.raw pre{
     return el;
   }
 
+  function togglePick(id) {
+    if (state.pick[id]) delete state.pick[id];
+    else state.pick[id] = true;
+    var el = document.querySelector('.rec[data-id="' + id + '"]');
+    if (el) {
+      var on = !!state.pick[id];
+      el.classList.toggle('checked', on);
+      var ck = el.querySelector('.rec-ck');
+      if (ck) ck.classList.toggle('on', on);
+    }
+    updateSelBar();
+    haptic();
+  }
+
+  function pickedIds() { return Object.keys(state.pick).filter(function (id) { return state.pick[id]; }); }
+
+  function updateSelBar() {
+    var bar = $('#selBar');
+    if (!bar) return;
+    var n = pickedIds().length;
+    bar.hidden = !state.multi;
+    $('#selInfo').textContent = '已选 ' + n + ' 条';
+    $('#btnSelArea').disabled = n === 0;
+    $('#btnMulti').classList.toggle('active', state.multi);
+    $('#btnMulti').textContent = state.multi ? '退出批量' : '批量改区';
+  }
+
+  function setMulti(on) {
+    state.multi = !!on;
+    if (!state.multi) state.pick = {};
+    renderRecords();
+    updateSelBar();
+  }
+
   function renderRecords() {
     var list = $('#recordList');
     var q = state.q.trim().toLowerCase();
+    buildFirstMap();
     var rows = state.records.filter(function (r) { return recordMatches(r, q); });
 
     list.innerHTML = '';
@@ -1052,12 +1321,13 @@ details.raw pre{
     var empty = $('#emptyState');
     if (rows.length === 0) {
       empty.hidden = false;
-      var noData = state.records.length === 0;
+      var noData = !state.records.some(function (r) { return !r.staged; });
       $('#emptyTitle').textContent = noData ? '还没有定位记录' : '没有匹配的记录';
       $('#emptyDesc').textContent = noData ? '拍照识别一单，选择区域即可归档' : '换个关键词或区域筛选试试';
       $('#btnSeed').hidden = !noData;
       if (noData) list.style.display = 'none';
       else list.style.display = '';
+      updateSelBar();
       return;
     }
     empty.hidden = true;
@@ -1081,26 +1351,40 @@ details.raw pre{
       list.appendChild(head);
       index[key].forEach(function (r) { list.appendChild(recordEl(r)); });
     });
+    updateSelBar();
   }
 
   function updateStats() {
-    var today = state.records.filter(function (r) { return isToday(r.createdAt); }).length;
+    var placed = state.records.filter(function (r) { return !r.staged; });
+    var staged = state.records.filter(function (r) { return r.staged; });
+    var today = placed.filter(function (r) { return isToday(r.createdAt); }).length;
     var covered = {};
-    state.records.forEach(function (r) { covered[r.area] = true; });
+    placed.forEach(function (r) { covered[r.area] = true; });
     $('#statToday').innerHTML = today + '<small>单</small>';
-    $('#statTotal').innerHTML = state.records.length + '<small>单</small>';
+    $('#statTotal').innerHTML = placed.length + '<small>单</small>';
     $('#statAreas').innerHTML = Object.keys(covered).length + '<small>区</small>';
 
     var badge = $('#tabBadge');
-    var n = state.records.length;
+    var n = placed.length;
     badge.textContent = n > 99 ? '99+' : String(n);
     badge.classList.toggle('show', n > 0);
+
+    var sb = $('#stageBadge');
+    if (sb) {
+      sb.textContent = staged.length > 99 ? '99+' : String(staged.length);
+      sb.classList.toggle('show', staged.length > 0);
+    }
+    var quick = $('#stageQuick');
+    if (quick) quick.textContent = staged.length ? (staged.length + ' 个待归位') : '0 个待归位';
+    var total = $('#stageTotal');
+    if (total) total.textContent = staged.length + ' 个批号';
   }
 
   function renderAll() {
     renderAreas();
     renderFilters();
     renderRecords();
+    renderStage();
     updateStats();
   }
 
@@ -1114,37 +1398,61 @@ details.raw pre{
     $('#main').scrollTop = 0;
     closeSheets();
     if (name === 'records') { renderFilters(); renderRecords(); updateStats(); }
+    if (name === 'stage') { renderStage(); updateStats(); }
+    if (name === 'scan') { renderAreas(); updateSaveState(); }
   }
 
   /* ---------------- 保存 / 删除 ---------------- */
 
   function updateSaveState() {
-    var hasId = $('#fCode').value.trim() || $('#fCustomer').value.trim();
-    $('#btnSave').disabled = !(hasId && state.area);
+    var code = $('#fCode').value.trim();
+    $('#btnSave').disabled = !(code && state.area);
     $('#saveHint').textContent = !state.area
       ? '先选一个存放区域，再保存这一单。'
-      : (!hasId ? '填写单号或客户信息后保存。' : '确认无误后点击保存，归位到 ' + state.area + '。');
+      : (!code ? '填写或识别批号后保存。' : '确认无误后点击保存，归位到 ' + state.area + '。');
+  }
+
+  function showExisting(rec) {
+    if (!rec) return;
+    if (rec.staged) {
+      state.stageSel = {};
+      state.stageSel[rec.id] = true;
+      setView('stage');
+      renderStage();
+      haptic();
+    } else {
+      openDetail(rec.id);
+    }
   }
 
   function saveRecord() {
-    var code = $('#fCode').value.trim();
-    var customer = $('#fCustomer').value.trim();
-    if (!code && !customer) {
+    var code = normalizeCode($('#fCode').value);
+    var item = $('#fItem').value.trim();
+    if (!code) {
       $('#fCode').focus();
-      toast('请先填写单号或客户');
+      toast('请先填写或识别批号');
       return;
     }
     if (!state.area) {
       toast('请选择存放区域');
       return;
     }
+    var existing = findRecordByCode(code);
+    if (existing) {
+      $('#fCode').value = existing.code;
+      toast('该批号已录入 · ' + (existing.staged ? '暂存区' : existing.area) +
+        ' · ' + timeStr(existing.createdAt), {
+        label: '查看',
+        fn: function () { showExisting(existing); }
+      });
+      return;
+    }
     var rec = {
       id: uid(),
       code: code,
-      customer: customer,
-      count: $('#fCount').value.trim(),
-      weight: $('#fWeight').value.trim(),
+      item: item,
       area: state.area,
+      staged: false,
       createdAt: Date.now(),
       thumb: state.pending ? state.pending.thumb : '',
       gh: null
@@ -1171,6 +1479,8 @@ details.raw pre{
     var rec = state.records.filter(function (r) { return r.id === id; })[0];
     if (!rec) return;
     state.records = state.records.filter(function (r) { return r.id !== id; });
+    delete state.pick[id];
+    delete state.stageSel[id];
     persist();
     renderAll();
     closeSheets();
@@ -1189,9 +1499,7 @@ details.raw pre{
 
   function resetForm(keepArea) {
     $('#fCode').value = '';
-    $('#fCount').value = '';
-    $('#fWeight').value = '';
-    $('#fCustomer').value = '';
+    $('#fItem').value = '';
     $('#previewCard').hidden = true;
     $('#previewImg').removeAttribute('src');
     $('#overlay').innerHTML = '';
@@ -1199,6 +1507,7 @@ details.raw pre{
     $('#confTag').hidden = true;
     clearCandidates();
     clearCrop();
+    clearBatch(true);
     setProgress(0);
     setStatus('准备识别…', false);
     state.pending = null;
@@ -1254,12 +1563,13 @@ details.raw pre{
     $('#previewImg').src = main;
     $('#overlay').innerHTML = '';
     $('#rawText').textContent = '';
-    ['fCode', 'fCount', 'fWeight', 'fCustomer'].forEach(function (id) {
+    ['fCode', 'fItem'].forEach(function (id) {
       $('#' + id).value = '';
     });
     $('#confTag').hidden = true;
     clearCandidates();
     clearCrop();
+    clearBatch(true);
     renderTemplateUI();
     updateTplThumb();
     updateSaveState();
@@ -1571,12 +1881,14 @@ details.raw pre{
     });
   }
 
-  function recognize(canvas, psm) {
+  function recognize(canvas, psm, opts) {
+    opts = opts || {};
     return getWorker().then(function (worker) {
       return canvasToBlob(canvas).then(function (blob) {
         return worker.setParameters({
           tessedit_pageseg_mode: String(psm),
-          preserve_interword_spaces: '1'
+          preserve_interword_spaces: '1',
+          tessedit_char_whitelist: opts.whitelist || ''
         }).then(function () {
           return worker.recognize(blob, {}, { text: true, blocks: true, hocr: false, tsv: false });
         });
@@ -1587,9 +1899,7 @@ details.raw pre{
   function countFilled(p) {
     var n = 0;
     if (p.code) n++;
-    if (p.count) n++;
-    if (p.weight) n++;
-    if (p.customer) n++;
+    if (p.item) n++;
     return n;
   }
 
@@ -1610,6 +1920,7 @@ details.raw pre{
     c.height = Math.max(1, Math.round(h * scale));
     var ctx = c.getContext('2d');
     ctx.imageSmoothingEnabled = true;
+    if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, c.width, c.height);
     ctx.drawImage(src, 0, 0, c.width, c.height);
@@ -1690,9 +2001,10 @@ details.raw pre{
 
     var p = parsed || parseText(text);
     setField('#fCode', p.code);
-    setField('#fCount', p.count);
-    setField('#fWeight', p.weight);
-    setField('#fCustomer', p.customer);
+    setField('#fItem', p.item);
+
+    var codes = collectBatchCodes(text);
+    if (codes.length > 1) setBatchCodes(codes, { text: text, auto: true });
 
     renderCandidates(text, p);
     if (!meta.noBoxes) drawBoxes((data && data.words) || [], p, meta.region, meta.scale);
@@ -1708,9 +2020,12 @@ details.raw pre{
     if (!filled) {
       setStatus(meta.fromTemplate
         ? '固定区域内未识别到内容，可重设区域或点「全图识别」'
-        : '未识别到关键字段，点下方候选或手动填写', false);
+        : '未识别到批号，可点下方候选、手动填写，或用「批量识别列表」', false);
       var det = $('#previewCard').querySelector('details');
       if (det) det.open = true;
+    } else if (codes.length > 1) {
+      setStatus((meta.fromTemplate ? '固定区域识别完成' : '识别完成') + ' · 本图有 ' + codes.length +
+        ' 个批号，可整批存入暂存区', false);
     } else {
       setStatus((meta.fromTemplate ? '固定区域识别完成' : '识别完成') + ' · 已填 ' + filled + ' 项，请核对', false);
     }
@@ -1772,9 +2087,849 @@ details.raw pre{
   }
 
   function setBusyUI(on) {
-    ['btnScanAll', 'btnCropMode', 'btnRetry', 'btnTest'].forEach(function (id) {
+    ['btnScanAll', 'btnCropMode', 'btnRetry', 'btnTest', 'btnBatchScan'].forEach(function (id) {
       var b = $('#' + id);
       if (b) b.disabled = !!on;
+    });
+  }
+
+  /* ================= 批量识别（整张列表） ================= */
+
+  function resizeCanvas(src, scale) {
+    if (!(scale > 1.001)) return src;
+    // 分步放大 + 高质量插值，比一次性拉伸更清晰（小字/彩色底差别明显）
+    var cur = src;
+    var remain = scale;
+    while (remain > 1.001) {
+      var step = Math.min(2, remain);
+      var c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(cur.width * step));
+      c.height = Math.max(1, Math.round(cur.height * step));
+      var ctx = c.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.drawImage(cur, 0, 0, c.width, c.height);
+      cur = c;
+      remain /= step;
+    }
+    return cur;
+  }
+
+  // 小图（手机截长图、缩略图）先放大再识别，字太小是识别不准的主因
+  function ensureBatchCanvas(src) {
+    var w = src.width;
+    var h = src.height;
+    var maxSide = Math.max(w, h);
+    var minSide = Math.min(w, h);
+    var scale = 1;
+    if (maxSide < 1600) scale = Math.min(3, 1600 / Math.max(1, maxSide));
+    if (minSide < 500) scale = Math.max(scale, Math.min(4, 900 / Math.max(1, minSide)));
+    return resizeCanvas(src, Math.max(1, scale));
+  }
+
+  // 逐行把背景拉白、文字保持深色：橙/红色底行也能被稳定识别（等价于软二值化）
+  function normalizeBandCanvas(src) {
+    var c = document.createElement('canvas');
+    c.width = src.width;
+    c.height = src.height;
+    var ctx = c.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return src;
+    ctx.drawImage(src, 0, 0);
+    var img;
+    try { img = ctx.getImageData(0, 0, c.width, c.height); } catch (e) { return src; }
+    var d = img.data;
+    var w = c.width;
+    var h = c.height;
+    var hist = new Uint32Array(256);
+    var y, x, i, lum, base, acc, bg, v, lo, k, out;
+    for (y = 0; y < h; y++) {
+      hist.fill(0);
+      base = y * w * 4;
+      for (x = 0; x < w; x++) {
+        i = base + x * 4;
+        lum = (d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114) | 0;
+        hist[lum]++;
+      }
+      acc = 0;
+      bg = 255;
+      for (v = 0; v < 256; v++) {
+        acc += hist[v];
+        if (acc >= w * 0.9) { bg = v; break; }
+      }
+      if (bg < 60) continue; // 整行偏暗（照片/黑底）不做处理
+      lo = bg * 0.55;
+      k = 255 / Math.max(1, bg - lo);
+      for (x = 0; x < w; x++) {
+        i = base + x * 4;
+        lum = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
+        out = (lum - lo) * k;
+        out = out < 0 ? 0 : (out > 255 ? 255 : out);
+        d[i] = d[i + 1] = d[i + 2] = out;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    return c;
+  }
+
+  // 长图分段识别：每段都重新放大，行高更稳定，命中率明显高于整图一次
+  function batchTileCount(canvas) {
+    var w = canvas.width;
+    var h = canvas.height;
+    var n = Math.ceil(h / 1100);
+    if (w > 0 && h / w > 3) n = Math.max(n, 3);
+    return Math.max(1, Math.min(8, n));
+  }
+
+  function recognizeText(canvas, psm, whitelist) {
+    return recognize(canvas, psm, { whitelist: whitelist }).then(function (res) {
+      var d = (res && res.data) || {};
+      return { text: d.text || '', conf: typeof d.confidence === 'number' ? d.confidence : 0, data: d };
+    });
+  }
+
+  // 统计每一行有多少「文字像素」，用来找行与行之间的空白，避免把一行批号从中间切断
+  function rowInkProfile(canvas) {
+    var maxW = 480;
+    var scale = Math.min(1, maxW / Math.max(1, canvas.width));
+    var w = Math.max(1, Math.round(canvas.width * scale));
+    var h = Math.max(1, Math.round(canvas.height * scale));
+    var c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    var ctx = c.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return null;
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(canvas, 0, 0, w, h);
+    var data;
+    try { data = ctx.getImageData(0, 0, w, h).data; } catch (e) { return null; }
+
+    var hist = new Uint32Array(256);
+    var i, lum, total = w * h;
+    for (i = 0; i < data.length; i += 4) {
+      lum = (data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114) | 0;
+      hist[lum]++;
+    }
+    // 用「最暗 1%」估计文字颜色，阈值随图片自适应（红底、橙底不会被当成文字）
+    var acc = 0, low = 0, v;
+    for (v = 0; v < 256; v++) {
+      acc += hist[v];
+      if (acc >= total * 0.01) { low = v; break; }
+    }
+    var th = Math.max(40, Math.min(150, low + 18));
+
+    var rows = new Float32Array(h);
+    var x, y, n, base;
+    for (y = 0; y < h; y++) {
+      n = 0;
+      base = y * w * 4;
+      for (x = 0; x < w; x++) {
+        i = base + x * 4;
+        lum = data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114;
+        if (lum < th) n++;
+      }
+      rows[y] = n;
+    }
+    return { rows: rows, width: w, threshold: th };
+  }
+
+  // 把分割线吸附到空白行，长列表/彩色行也能一段段完整切分
+  function smartBounds(canvas, n) {
+    var bounds = [];
+    var i, k;
+    for (i = 0; i <= n; i++) bounds.push(i / n);
+    if (!n || n < 2) return { bounds: [0, 1], aligned: false };
+
+    var prof = rowInkProfile(canvas);
+    if (!prof) return { bounds: bounds, aligned: false };
+    var rows = prof.rows;
+    var h = rows.length;
+    var eps = Math.max(1, Math.round(prof.width * 0.01));
+    var gaps = [];
+    var start = -1;
+    for (var y = 0; y <= h; y++) {
+      var empty = y < h ? rows[y] <= eps : false;
+      if (empty && start < 0) start = y;
+      if (!empty && start >= 0) {
+        gaps.push(((start + (y - 1)) / 2) / h);
+        start = -1;
+      }
+    }
+    if (!gaps.length) return { bounds: bounds, aligned: false };
+
+    var aligned = false;
+    for (k = 1; k < n; k++) {
+      var ideal = k / n;
+      var best = -1;
+      var bestD = 0.05;
+      for (i = 0; i < gaps.length; i++) {
+        var d = Math.abs(gaps[i] - ideal);
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      if (best >= 0) { bounds[k] = gaps[best]; aligned = true; }
+    }
+    for (k = 1; k < n; k++) {
+      if (bounds[k] <= bounds[k - 1] + 0.008) bounds[k] = bounds[k - 1] + 0.008;
+      if (bounds[k] >= 1) bounds[k] = 1;
+    }
+    return { bounds: bounds, aligned: aligned };
+  }
+
+  function batchScan(canvas, opts) {
+    opts = opts || {};
+    var t0 = Date.now();
+    var base = ensureBatchCanvas(canvas);
+    var tiles = opts.tiles || batchTileCount(base);
+    var plan = smartBounds(base, tiles);
+    var bounds = plan.bounds;
+    var texts = [];
+    var codes = [];
+    var confs = [];
+
+    function absorb(text) {
+      texts.push(text);
+      collectBatchCodes(text, { limit: MAX_BATCH }).forEach(function (c) {
+        if (codes.indexOf(c) < 0 && codes.length < MAX_BATCH) codes.push(c);
+      });
+    }
+
+    function readBand(canvas2, label) {
+      return recognizeText(canvas2, '6', CODE_WHITELIST).then(function (out) {
+        absorb(out.text);
+        if (out.conf) confs.push(out.conf);
+        return collectBatchCodes(out.text, { limit: 1 }).length > 0;
+      }).catch(function (err) {
+        logEvent(label + '失败：' + (err && err.message ? err.message : err));
+        return false;
+      });
+    }
+
+    function step(i) {
+      var pad = tiles > 1 ? 0.004 : 0;
+      var sel = tiles > 1
+        ? { x0: 0, y0: Math.max(0, bounds[i] - pad), x1: 1, y1: Math.min(1, bounds[i + 1] + pad) }
+        : { x0: 0, y0: 0, x1: 1, y1: 1 };
+      var region = cropCanvasRegion(base, sel);
+      var band = normalizeBandCanvas(region.canvas);
+      setStatus('批量识别 ' + (i + 1) + '/' + tiles + ' 段…', true);
+      setProgress(0.08 + (i / tiles) * 0.7);
+
+      return readBand(band, '批量识别第 ' + (i + 1) + ' 段').then(function (ok) {
+        if (ok) return true;
+        // 这一段没读到批号：放大 1.6 倍再来一次（彩色底、字小时特别有效）
+        setStatus('第 ' + (i + 1) + ' 段没读到，放大重试…', true);
+        return readBand(resizeCanvas(band, 1.6), '批量识别第 ' + (i + 1) + ' 段放大重试');
+      }).then(function (ok2) {
+        if (ok2) return null;
+        // 仍未读到 → 再用灰度+对比度增强试一次（只影响这一段）
+        return readBand(enhanceCanvas(band), '批量识别第 ' + (i + 1) + ' 段增强重试');
+      }).then(function () {
+        return i + 1 < tiles ? step(i + 1) : null;
+      });
+    }
+
+    return step(0).then(function () {
+      if (codes.length >= 6) return null;
+      // 批号少时补一次「稀疏文字」模式，避免整张图只认出两三个
+      setStatus('再补一次识别（稀疏文字模式）…', true);
+      setProgress(0.86);
+      var full = cropCanvasRegion(base, { x0: 0, y0: 0, x1: 1, y1: 1 });
+      return recognizeText(normalizeBandCanvas(full.canvas), '11', CODE_WHITELIST).then(function (out) {
+        absorb(out.text);
+        if (out.conf) confs.push(out.conf);
+      }).catch(function () {});
+    }).then(function () {
+      return {
+        codes: codes.slice(0, MAX_BATCH),
+        text: texts.join('\n'),
+        conf: confs.length
+          ? Math.round(confs.reduce(function (a, b) { return a + b; }, 0) / confs.length)
+          : 0,
+        ms: Date.now() - t0,
+        tiles: tiles,
+        aligned: plan.aligned
+      };
+    });
+  }
+
+  function scrollBatchIntoView() {
+    var panel = $('#batchPanel');
+    if (panel && !panel.hidden) {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function setBatchCodes(codes, info) {
+    info = info || {};
+    var kept = {};
+    state.batch.forEach(function (x) { if (x.checked) kept[x.code] = true; });
+    var next = [];
+    var seen = Object.create(null);
+    codes.forEach(function (c) {
+      if (seen[c]) return;
+      seen[c] = true;
+      var dup = findRecordByCode(c);
+      next.push({
+        code: c,
+        checked: kept[c] !== undefined ? kept[c] : !dup,
+        dup: !!dup,
+        dupArea: dup ? (dup.staged ? '暂存区' : dup.area) : '',
+        dupAt: dup ? dup.createdAt : 0
+      });
+    });
+    state.batch = next;
+    state.batchInfo = info;
+    renderBatch();
+    if (next.length) scrollBatchIntoView();
+  }
+
+  function addBatchCodes(codes) {
+    var exist = {};
+    state.batch.forEach(function (x) { exist[x.code] = true; });
+    var added = 0;
+    codes.forEach(function (c) {
+      if (exist[c]) return;
+      exist[c] = true;
+      var dup = findRecordByCode(c);
+      state.batch.push({
+        code: c,
+        checked: !dup,
+        dup: !!dup,
+        dupArea: dup ? (dup.staged ? '暂存区' : dup.area) : '',
+        dupAt: dup ? dup.createdAt : 0
+      });
+      added++;
+    });
+    if (added) { renderBatch(); scrollBatchIntoView(); }
+    return added;
+  }
+
+  function renderBatch() {
+    var panel = $('#batchPanel');
+    var list = $('#batchList');
+    if (!panel || !list) return;
+    if (!state.batch.length) {
+      panel.hidden = true;
+      list.innerHTML = '';
+      $('#batchCount').textContent = '识别到 0 个批号';
+      $('#batchNote').textContent = '';
+      $('#btnBatchStage').disabled = true;
+      return;
+    }
+    panel.hidden = false;
+    list.innerHTML = '';
+    state.batch.forEach(function (item) {
+      var row = document.createElement('div');
+      row.className = 'bcode' + (item.checked ? ' on' : '');
+      row.innerHTML =
+        '<span class="ck">' + (item.checked ? '✓' : '') + '</span>' +
+        '<span class="code">' + esc(item.code) + '</span>' +
+        (item.dup
+          ? '<span class="tag dup">已录入 · ' + esc(item.dupArea) + '</span>'
+          : '<span class="tag">新增</span>');
+      row.addEventListener('click', function () {
+        item.checked = !item.checked;
+        renderBatch();
+        haptic();
+      });
+      list.appendChild(row);
+    });
+
+    var checked = state.batch.filter(function (x) { return x.checked; }).length;
+    var dupN = state.batch.filter(function (x) { return x.dup; }).length;
+    $('#batchCount').textContent = '识别到 ' + state.batch.length + ' 个批号';
+    $('#batchNote').textContent = '已勾选 ' + checked + (dupN ? ' · 已录入 ' + dupN : '');
+    $('#btnBatchStage').disabled = checked === 0;
+    $('#batchHint').textContent = dupN
+      ? '灰标是已录入过的批号（首次录入时间更早），默认不勾选，保存时也会自动跳过。'
+      : '勾选要保留的批号，点「存入暂存区」；之后在「暂存」页一次归位。';
+  }
+
+  function clearBatch(hidePanel) {
+    state.batch = [];
+    state.batchInfo = null;
+    if ($('#batchList')) $('#batchList').innerHTML = '';
+    if ($('#batchPanel')) $('#batchPanel').hidden = true;
+    if ($('#batchCount')) $('#batchCount').textContent = '识别到 0 个批号';
+    if ($('#batchNote')) $('#batchNote').textContent = '';
+    if ($('#btnBatchStage')) $('#btnBatchStage').disabled = true;
+    void hidePanel;
+  }
+
+  function runBatchScan() {
+    if (!state.pending) { toast('请先选择一张图片'); return; }
+    if (state.busy || state.batchBusy) { toast('正在识别，请稍候'); return; }
+    state.batchBusy = true;
+    state.batch = [];
+    renderBatch();
+    setBusyUI(true);
+    $('#overlay').innerHTML = '';
+    $('#confTag').hidden = true;
+    setStatus('准备批量识别…', true);
+    setProgress(0.04);
+
+    batchScan(state.pending.canvas, {}).then(function (out) {
+      $('#rawText').textContent = out.text.trim() || '（未识别到文字）';
+      setBatchCodes(out.codes, { text: out.text, conf: out.conf, ms: out.ms, tiles: out.tiles });
+      setProgress(1);
+
+      var tag = $('#confTag');
+      tag.hidden = false;
+      tag.textContent = '置信度 ' + out.conf + '% · ' + (out.ms / 1000).toFixed(1) + 's · ' + out.tiles + ' 段';
+      tag.className = 'conf' + (out.conf < 55 ? ' low' : '');
+
+      if (!out.codes.length) {
+        setStatus('没有识别到批号：可点「框选识别」只框列表区域，或用「粘贴文字补批号」', false, true);
+        toast('没有识别到批号，试试框选或粘贴');
+      } else {
+        setStatus('批量识别完成 · ' + out.codes.length + ' 个批号，核对后存入暂存区', false);
+      }
+      ENGINE.last = {
+        at: Date.now(), conf: out.conf, chars: out.text.length,
+        ms: out.ms, filled: out.codes.length
+      };
+      refreshDiagIfOpen();
+    }).catch(function (err) {
+      handleOCRError(err);
+    }).then(function () {
+      state.batchBusy = false;
+      setBusyUI(false);
+      refreshDiagIfOpen();
+    });
+  }
+
+  function stageBatch() {
+    var picked = state.batch.filter(function (x) { return x.checked; });
+    if (!picked.length) { toast('请先勾选批号'); return; }
+    var itemEl = $('#fItem');
+    var item = itemEl ? itemEl.value.trim() : '';
+    var added = [];
+    var newRecs = [];
+    var skipped = 0;
+    picked.forEach(function (x) {
+      if (findRecordByCode(x.code)) { skipped++; return; }
+      var rec = {
+        id: uid(),
+        code: x.code,
+        item: item,
+        area: '',
+        staged: true,
+        createdAt: Date.now(),
+        thumb: '',
+        gh: null
+      };
+      newRecs.push(rec);
+      added.push(rec.id);
+    });
+    // 保持识别列表的顺序（第一条在最上面），方便和截图逐行核对
+    if (newRecs.length) state.records = newRecs.concat(state.records);
+    if (state.records.length > MAX_RECORDS) state.records.length = MAX_RECORDS;
+    persist();
+
+    var staged = {};
+    picked.forEach(function (x) { staged[x.code] = true; });
+    state.batch = state.batch.filter(function (x) { return !staged[x.code]; });
+
+    renderAll();
+    renderBatch();
+    haptic();
+    if (!added.length) {
+      toast('这些批号都已录入过（去重跳过 ' + skipped + ' 个）');
+      return;
+    }
+    toast('已存入暂存区 ' + added.length + ' 个' + (skipped ? '，去重跳过 ' + skipped + ' 个' : ''), {
+      label: '去归位',
+      fn: function () { setView('stage'); }
+    });
+  }
+
+  /* ================= 暂存区 ================= */
+
+  function stagedRecords() {
+    return state.records.filter(function (r) { return r.staged; });
+  }
+
+  var stageVisible = [];
+  var STAGE_SEP_RE = /[\s,，;；、+|/]+/;
+  var STAGE_END_SEP_RE = /[\s,，;；、+|/]$/;
+
+  function normStageTerm(s) {
+    var t = String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    return t.length >= 3 ? t : '';
+  }
+
+  function parseStageTerms(q) {
+    var out = [];
+    String(q || '').toUpperCase().split(STAGE_SEP_RE).forEach(function (s) {
+      var t = normStageTerm(s);
+      if (!t || out.indexOf(t) >= 0) return;
+      if (out.length < 12) out.push(t);
+    });
+    return out;
+  }
+
+  // 已确定的尾号 + 正在输入的尾号，一起参与匹配
+  function stageQueryTerms() {
+    var terms = state.stageTerms.slice();
+    parseStageTerms(state.stageDraft).forEach(function (t) {
+      if (terms.indexOf(t) < 0) terms.push(t);
+    });
+    return terms;
+  }
+
+  function commitStageTerm(value) {
+    var t = normStageTerm(value);
+    if (!t) return false;
+    if (state.stageTerms.indexOf(t) >= 0) return false;
+    if (state.stageTerms.length >= 12) { toast('一次最多搜 12 个尾号'); return false; }
+    state.stageTerms.push(t);
+    state.stageAutoSig = '';
+    return true;
+  }
+
+  function clearStageSearch() {
+    state.stageTerms = [];
+    state.stageDraft = '';
+    state.stageAutoSig = '';
+    state.stageSel = {};
+    var inp = $('#stageSearch');
+    if (inp) inp.value = '';
+  }
+
+  // 后几位 / 中间一段 / 开头 都能命中；输入越长越精确
+  function matchStageCode(code, terms) {
+    var c = codeKey(code);
+    if (!c || !terms || !terms.length) return false;
+    for (var i = 0; i < terms.length; i++) {
+      var t = terms[i];
+      if (!t) continue;
+      if (c.length >= t.length && c.slice(c.length - t.length) === t) return true;
+      if (c.indexOf(t) === 0) return true;
+      if (t.length >= 4 && c.indexOf(t) >= 0) return true;
+    }
+    return false;
+  }
+
+  function renderStage() {
+    var list = $('#stageList');
+    if (!list) return;
+    var all = stagedRecords();
+    var terms = stageQueryTerms();
+    var rows = terms.length ? all.filter(function (r) { return matchStageCode(r.code, terms); }) : all;
+    stageVisible = rows.map(function (r) { return r.id; });
+
+    // 尾号组合变化时：把当前所有匹配项自动勾选（多个不同尾号会累加）
+    var sig = terms.join('|');
+    if (sig !== state.stageAutoSig) {
+      var pick = {};
+      if (sig) rows.forEach(function (r) { pick[r.id] = true; });
+      state.stageSel = pick;
+      state.stageAutoSig = sig;
+    }
+
+    var alive = {};
+    rows.forEach(function (r) { alive[r.id] = true; });
+    Object.keys(state.stageSel).forEach(function (id) {
+      if (!alive[id]) delete state.stageSel[id];
+    });
+
+    var input = $('#stageSearch');
+    if (input && input.value !== state.stageDraft) input.value = state.stageDraft;
+    var clearBtn = $('#stageSearchClear');
+    if (clearBtn) clearBtn.hidden = !state.stageTerms.length && !state.stageDraft;
+
+    // 已确定的尾号标签
+    var chipRow = $('#stageTerms');
+    if (chipRow) {
+      chipRow.innerHTML = '';
+      chipRow.hidden = !state.stageTerms.length;
+      state.stageTerms.forEach(function (t) {
+        var chip = document.createElement('span');
+        chip.className = 'term-chip';
+        chip.innerHTML = '<span>' + esc(t) + '</span>' +
+          '<button type="button" aria-label="移除尾号 ' + esc(t) + '">✕</button>';
+        chip.querySelector('button').addEventListener('click', function (e) {
+          e.stopPropagation();
+          state.stageTerms = state.stageTerms.filter(function (x) { return x !== t; });
+          state.stageAutoSig = '';
+          renderStage();
+          haptic();
+        });
+        chipRow.appendChild(chip);
+      });
+    }
+
+    list.innerHTML = '';
+    rows.forEach(function (r) {
+      var on = !!state.stageSel[r.id];
+      var el = document.createElement('div');
+      el.className = 'stage-row' + (on ? ' on' : '');
+      el.innerHTML =
+        '<span class="ck">' + (on ? '✓' : '') + '</span>' +
+        '<span class="code">' + esc(r.code) + '</span>' +
+        '<span class="meta">' + (r.item ? esc(r.item) + ' · ' : '') + timeStr(r.createdAt) + '</span>';
+      el.addEventListener('click', function () {
+        if (state.stageSel[r.id]) delete state.stageSel[r.id];
+        else state.stageSel[r.id] = true;
+        renderStage();
+        haptic();
+      });
+      list.appendChild(el);
+    });
+    $('#stageEmpty').hidden = rows.length > 0;
+    if (!rows.length) {
+      $('#stageEmpty').innerHTML = terms.length && all.length
+        ? '没有匹配的批号<br>换个后几位数字，点 ✕ 可清除搜索'
+        : '暂存区是空的<br>先在「定位」页批量识别，或手动录入一个批号';
+    }
+
+    var grid = $('#stageAreaGrid');
+    grid.innerHTML = '';
+    state.areas.forEach(function (name) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'area-btn' + (state.stageArea === name ? ' active' : '');
+      b.setAttribute('aria-pressed', state.stageArea === name ? 'true' : 'false');
+      b.innerHTML = '<span class="check">✓</span>' +
+        '<span class="area-label">' + esc(name) + '</span>' +
+        '<span class="badge">' + todayCount(name) + '</span>';
+      b.addEventListener('click', function () {
+        state.stageArea = name;
+        renderStage();
+        haptic();
+      });
+      grid.appendChild(b);
+    });
+
+    var picked = rows.filter(function (r) { return state.stageSel[r.id]; }).length;
+    $('#stagePick').textContent = '已选 ' + picked + ' 个';
+    $('#btnStageAssign').disabled = !(picked && state.stageArea);
+    $('#stageHint').textContent = !all.length
+      ? '暂存区为空。批量识别后点「存入暂存区」，批号会先到这里。'
+      : (terms.length
+        ? (rows.length
+          ? '已自动勾选 ' + picked + ' 个匹配批号；选区域 → 批量归位即可。'
+          : '没有匹配的批号，换后几位数字或清除搜索。')
+        : (!picked ? '先勾选要归位的批号（可全选），也可以在上面按后 4 位搜索。'
+          : (!state.stageArea ? '再选一个区域，然后点「批量归位」。'
+            : '将把 ' + picked + ' 个批号归到 ' + state.stageArea + '。')));
+
+    var matchInfo = $('#stageMatch');
+    if (matchInfo) {
+      if (terms.length) {
+        matchInfo.innerHTML = rows.length
+          ? '已匹配 <b>' + rows.length + '</b> 个批号（' + esc(state.stageTerms.join('、') || terms.join('、')) +
+            '），自动勾选 <b>' + picked + '</b> 个；可继续加尾号，最后一起归位。'
+          : '这些尾号暂时没有匹配的批号：输入 3 位以上，或点标签上的 ✕ 移除。';
+      } else {
+        matchInfo.textContent = all.length
+          ? '输入后几位，按空格 / 逗号 / 回车可再加一个尾号；匹配到的批号会自动勾选。'
+          : '支持后几位、中间一段或完整批号；至少输入 3 位。';
+      }
+    }
+  }
+
+  function assignStage() {
+    var rows = stagedRecords().filter(function (r) { return state.stageSel[r.id]; });
+    if (!rows.length) { toast('请先勾选批号'); return; }
+    if (!state.stageArea) { toast('请先选择区域'); return; }
+    var area = state.stageArea;
+    var backup = rows.map(function (r) { return r.id; });
+    rows.forEach(function (r) { r.area = area; r.staged = false; });
+    state.stageSel = {};
+    clearStageSearch();
+    persist();
+    renderAll();
+    haptic();
+    toast('已把 ' + rows.length + ' 个批号归到 ' + area, {
+      label: '撤销',
+      fn: function () {
+        state.records.forEach(function (r) {
+          if (backup.indexOf(r.id) >= 0) { r.area = ''; r.staged = true; }
+        });
+        persist();
+        renderAll();
+        toast('已撤销归位');
+      }
+    });
+  }
+
+  function deleteStageSelected() {
+    var rows = stagedRecords().filter(function (r) { return state.stageSel[r.id]; });
+    if (!rows.length) { toast('请先勾选批号'); return; }
+    var removed = rows.slice();
+    state.records = state.records.filter(function (r) { return r.staged ? !state.stageSel[r.id] : true; });
+    state.stageSel = {};
+    clearStageSearch();
+    persist();
+    renderAll();
+    toast('已从暂存区删除 ' + removed.length + ' 个', {
+      label: '撤销',
+      fn: function () {
+        removed.forEach(function (r) { state.records.push(r); });
+        persist();
+        renderAll();
+        toast('已恢复');
+      }
+    });
+  }
+
+  function clearStage() {
+    var rows = stagedRecords();
+    if (!rows.length) { toast('暂存区已是空的'); return; }
+    if (!window.confirm('确定清空暂存区的 ' + rows.length + ' 个批号？（记录页里已归位的记录不受影响）')) return;
+    var backup = rows.slice();
+    state.records = state.records.filter(function (r) { return !r.staged; });
+    state.stageSel = {};
+    clearStageSearch();
+    persist();
+    renderAll();
+    toast('暂存区已清空', {
+      label: '撤销',
+      fn: function () {
+        backup.forEach(function (r) { state.records.push(r); });
+        persist();
+        renderAll();
+        toast('已恢复');
+      }
+    });
+  }
+
+  /* ================= 记录页：批量改区 / 去重整理 ================= */
+
+  function renderBulkAreaPick() {
+    var wrap = $('#bulkAreaPick');
+    var ids = pickedIds();
+    var cur = '';
+    state.records.forEach(function (r) {
+      if (ids.indexOf(r.id) >= 0) {
+        if (!cur) cur = r.area;
+        else if (cur !== r.area) cur = '__mix__';
+      }
+    });
+    wrap.innerHTML = '';
+    state.areas.forEach(function (name) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = name === cur ? 'on' : '';
+      b.textContent = name;
+      b.addEventListener('click', function () { applyBulkArea(name); });
+      wrap.appendChild(b);
+    });
+    $('#bulkAreaTip').textContent = '把选中的 ' + ids.length + ' 条记录改到哪个区域？点一下即可完成。';
+  }
+
+  function openBulkArea() {
+    if (!pickedIds().length) { toast('请先勾选记录'); return; }
+    renderBulkAreaPick();
+    openSheet($('#bulkAreaSheet'));
+  }
+
+  function applyBulkArea(area) {
+    var ids = pickedIds();
+    if (!ids.length) return;
+    var backup = [];
+    state.records.forEach(function (r) {
+      if (ids.indexOf(r.id) >= 0) {
+        backup.push({ id: r.id, area: r.area, staged: r.staged });
+        r.area = area;
+        r.staged = false;
+      }
+    });
+    persist();
+    closeSheets();
+    setMulti(false);
+    renderAll();
+    haptic();
+    toast('已把 ' + ids.length + ' 条记录改到 ' + area, {
+      label: '撤销',
+      fn: function () {
+        backup.forEach(function (b) {
+          var r = state.records.filter(function (x) { return x.id === b.id; })[0];
+          if (r) { r.area = b.area; r.staged = b.staged; }
+        });
+        persist();
+        renderAll();
+        toast('已撤销修改');
+      }
+    });
+  }
+
+  function dedupeGroups() {
+    var map = Object.create(null);
+    var keys = [];
+    state.records.forEach(function (r) {
+      if (r.staged) return;
+      var k = codeKey(r.code);
+      if (!k) return;
+      if (!map[k]) { map[k] = []; keys.push(k); }
+      map[k].push(r);
+    });
+    var groups = [];
+    keys.forEach(function (k) {
+      if (map[k].length < 2) return;
+      map[k].sort(function (a, b) { return a.createdAt - b.createdAt; });
+      groups.push({ code: map[k][0].code, first: map[k][0], rows: map[k] });
+    });
+    groups.sort(function (a, b) { return b.rows.length - a.rows.length; });
+    return groups;
+  }
+
+  function renderDedupe(groups) {
+    var total = 0;
+    groups.forEach(function (g) { total += g.rows.length - 1; });
+    var html = '<div class="diag-log" style="margin-top:0"><b>发现 ' + groups.length +
+      ' 组重复，共多出 ' + total + ' 条</b></div>' +
+      '<div style="display:flex;flex-direction:column;gap:7px;margin-top:10px;max-height:46vh;overflow-y:auto">';
+    groups.slice(0, 60).forEach(function (g) {
+      html += '<div class="dup-item"><b>' + esc(g.code) + '</b>' +
+        '<span>首次 ' + esc(g.first.area) + ' · ' + esc(timeStr(g.first.createdAt)) +
+        ' · 共 ' + g.rows.length + ' 条</span></div>';
+    });
+    html += '</div>';
+    if (groups.length > 60) {
+      html += '<p class="hint">只显示前 60 组，保存时会一起处理。</p>';
+    }
+    html += '<p class="hint" style="margin-top:10px">合并后只保留每个批号最早录入的那一条（首次有效录入），其余删除；可撤销。</p>';
+    $('#dedupeBody').innerHTML = html;
+  }
+
+  function openDedupe() {
+    var groups = dedupeGroups();
+    if (!groups.length) {
+      toast('没有发现重复批号');
+      return;
+    }
+    renderDedupe(groups);
+    openSheet($('#dedupeSheet'));
+  }
+
+  function applyDedupe() {
+    var groups = dedupeGroups();
+    if (!groups.length) { closeSheets(); toast('没有重复批号'); return; }
+    var removeIds = {};
+    var removed = [];
+    groups.forEach(function (g) {
+      g.rows.slice(1).forEach(function (r) {
+        removeIds[r.id] = true;
+        removed.push(r);
+      });
+    });
+    state.records = state.records.filter(function (r) { return !removeIds[r.id]; });
+    state.pick = {};
+    persist();
+    closeSheets();
+    setMulti(false);
+    renderAll();
+    toast('去重完成 · 保留 ' + groups.length + ' 个首次录入，删除 ' + removed.length + ' 条重复', {
+      label: '撤销',
+      fn: function () {
+        removed.forEach(function (r) { state.records.push(r); });
+        persist();
+        renderAll();
+        toast('已恢复');
+      }
     });
   }
 
@@ -1787,15 +2942,8 @@ details.raw pre{
       /([A-Z]{2,6}-?\d{6,24})/i,
       /\b(\d{12,24})\b/
     ],
-    count: [
-      /(?:件\s*数|数\s*量|共\s*计|合\s*计|总\s*数|总\s*计)\s*[:：]?\s*(\d{1,4})\s*(?:件|个|条|只)?/,
-      /(\d{1,4})\s*(?:件|个|条|只)(?![0-9])/
-    ],
-    weight: [
-      /(?:克\s*重|重\s*量|净\s*重|总\s*重|金\s*重)\s*[:：]?\s*(\d+(?:\.\d{1,3})?)/,
-      /(\d+(?:\.\d{1,3})?)\s*(?:g|G|克)(?![a-zA-Z])/
-    ],
-    customer: [
+    item: [
+      /(?:外\s*在\s*装\s*货\s*物\s*品|外\s*在\s*物\s*品|装\s*货\s*物\s*品|外\s*包\s*装|包\s*装\s*物)\s*[:：]?\s*([\u4e00-\u9fa5A-Za-z0-9·\/]{1,16})/,
       /(?:委\s*托\s*单\s*位|委\s*托\s*方|送\s*样\s*单\s*位|送\s*样\s*人|客\s*户\s*名\s*称|客\s*户|顾\s*客|收\s*件\s*人|收\s*货\s*人|姓\s*名)\s*[:：]?\s*([\u4e00-\u9fa5A-Za-z·]{2,24})/
     ]
   };
@@ -1818,6 +2966,13 @@ details.raw pre{
       var m = text.match(list[i]);
       if (m && m[1]) return String(m[1]).replace(/\s+/g, '').trim();
     }
+    return '';
+  }
+
+  // 物品名只允许少量常见词，避免把整句话读进来
+  function guessItem(t) {
+    if (/白\s*框/.test(t)) return '白框';
+    if (/黑\s*袋/.test(t)) return '黑袋';
     return '';
   }
 
@@ -1845,21 +3000,15 @@ details.raw pre{
     var t = normalizeText(text);
     var p = {
       code: pickCode(t),
-      count: grab(t, RX.count),
-      weight: grab(t, RX.weight),
-      customer: grab(t, RX.customer)
+      item: grab(t, RX.item)
     };
-    if (!p.code || !p.count || !p.weight || !p.customer) {
+    if (!p.code) {
       var flat = t.replace(/\s+/g, '');
-      if (!p.code) {
-        p.code = pickCode(flat);
-        if (!p.code) p.code = grab(flat, RX.code);
-      }
-      if (!p.count) p.count = grab(flat, RX.count);
-      if (!p.weight) p.weight = grab(flat, RX.weight);
-      if (!p.customer) p.customer = grab(flat, RX.customer);
+      p.code = pickCode(flat) || grab(flat, RX.code);
+      if (!p.item) p.item = grab(flat, RX.item);
     }
     if (!p.code) p.code = grab(t, RX.code);
+    if (!p.item) p.item = guessItem(t);
 
     // 固定区域/框选区域的文字很短：标签被 OCR 读错时，退化为「取最长的字母+数字编号」
     // 与「冒号后的中文名」，避免整行都识别到了却填不进字段。
@@ -1874,12 +3023,83 @@ details.raw pre{
         });
         if (bestTok) p.code = bestTok;
       }
-      if (!p.customer) {
+      if (!p.item) {
         var cm = t.match(/[:：]\s*([\u4e00-\u9fa5]{2,12})/);
-        if (cm) p.customer = cm[1];
+        if (cm) p.item = cm[1];
       }
     }
     return p;
+  }
+
+  /* ---------------- 批号归一化 / 批量提取 ---------------- */
+
+  // 去空格、全角转半角、修正 OCR 常见混淆字（只改数字段），得到统一的批号写法
+  function normalizeCode(raw) {
+    var s = String(raw == null ? '' : raw);
+    s = s.replace(/[\uFF10-\uFF19\uFF21-\uFF3A\uFF41-\uFF5A]/g, function (ch) {
+      return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
+    });
+    s = s.replace(/[\s\u3000·・:：,，;；\-_\/\\|]/g, '');
+    s = s.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, '');
+    if (!s) return '';
+    var m = s.match(/^([A-Za-z]{0,4})(\d[A-Za-z0-9]*)$/);
+    if (m) {
+      var head = m[1].toUpperCase();
+      var tail = m[2]
+        .replace(/[Oo]/g, '0')
+        .replace(/[Il|]/g, '1')
+        .replace(/[Ss]/g, '5')
+        .replace(/[Bb]/g, '8')
+        .replace(/[Zz]/g, '2')
+        .replace(/[Gg]/g, '6');
+      s = head + tail;
+    } else {
+      s = s.toUpperCase();
+    }
+    return s;
+  }
+
+  function isBatchCode(code) {
+    if (!code || code.length < 9 || code.length > 26) return false;
+    if (!/^[A-Z0-9]+$/.test(code)) return false;
+    var digits = (code.match(/\d/g) || []).length;
+    if (digits < CODE_MIN_DIGITS) return false;
+    if (/^\d+$/.test(code)) {
+      if (code.length < 10 || code.length > 20) return false;
+      if (/^1\d{10}$/.test(code)) return false;            // 手机号
+      if (/^(19|20)\d{6}$/.test(code)) return false;       // 日期 20261121
+    }
+    if (/^(\d)\1+$/.test(code)) return false;
+    return true;
+  }
+
+  // 从任意 OCR 文本里提取全部批号（保持出现顺序、自动去重）
+  function collectBatchCodes(text, opts) {
+    opts = opts || {};
+    var limit = opts.limit || MAX_BATCH;
+    var out = [];
+    var seen = Object.create(null);
+    var s = String(text || '');
+    s = s.replace(/[\uFF10-\uFF19\uFF21-\uFF3A\uFF41-\uFF5A]/g, function (ch) {
+      return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
+    });
+    s = s.replace(/\u3000/g, ' ');
+    // 先粘回被空格/制表符拆开的批号（不跨行，避免把下一行的日期粘进来）
+    s = s.replace(/([A-Za-z])[ \t]+(?=\d)/g, '$1');
+    s = s.replace(/(\d)[ \t]+(?=\d)/g, '$1');
+    s = s.replace(/(\d)[ \t]+(?=\d)/g, '$1');
+
+    var re = /[A-Za-z0-9]+/g;
+    var m;
+    while ((m = re.exec(s)) !== null) {
+      if (out.length >= limit) break;
+      var c = normalizeCode(m[0]);
+      if (!isBatchCode(c)) continue;
+      if (seen[c]) continue;
+      seen[c] = true;
+      out.push(c);
+    }
+    return out;
   }
 
   /* ---------------- 候选字段 ---------------- */
@@ -1895,39 +3115,20 @@ details.raw pre{
       out.push({
         value: v,
         kind: kind,
-        label: kind === 'code' ? '单号' : kind === 'weight' ? '克重' : kind === 'count' ? '件数' : '文字'
+        label: kind === 'code' ? '批号' : '物品'
       });
     }
 
     if (parsed.code) push(parsed.code, 'code');
-    if (parsed.weight) push(parsed.weight, 'weight');
-    if (parsed.count) push(parsed.count, 'count');
+    if (parsed.item) push(parsed.item, 'item');
 
     var t = normalizeText(text);
-    var tokens = t.match(/[A-Za-z0-9][A-Za-z0-9\-_\/.]{2,26}/g) || [];
-    tokens.forEach(function (tok) {
-      var clean = tok.replace(/[.,\/]+$/, '');
-      if (!/\d/.test(clean)) return;
-      var unit = clean.match(/^(\d+(?:\.\d+)?)(?:g|G|克)$/);
-      if (unit) { push(unit[1], 'weight'); return; }
-      if (/^\d{1,2}[.\-\/]\d{1,2}[.\-\/]\d{2,4}$/.test(clean)) return;
-      if (/^\d+\.\d+$/.test(clean)) {
-        var fn = parseFloat(clean);
-        if (fn > 0 && fn < 9999) push(clean, 'weight');
-        return;
-      }
-      if (/^\d+$/.test(clean)) {
-        if (clean.length >= 8) push(clean, 'code');
-        else {
-          var n = parseInt(clean, 10);
-          if (n >= 1 && n <= 999) push(clean, 'count');
-        }
-        return;
-      }
-      push(clean, 'code');
-    });
+    var gi = guessItem(t);
+    if (gi) push(gi, 'item');
 
-    return out.slice(0, 10);
+    collectBatchCodes(t, { limit: 12 }).forEach(function (c) { push(c, 'code'); });
+
+    return out.slice(0, 12);
   }
 
   function renderCandidates(text, parsed) {
@@ -1946,7 +3147,7 @@ details.raw pre{
       b.className = 'cand';
       b.innerHTML = '<i>' + c.label + '</i><b>' + esc(c.value) + '</b>';
       b.addEventListener('click', function () {
-        var target = c.kind === 'code' ? '#fCode' : c.kind === 'weight' ? '#fWeight' : c.kind === 'count' ? '#fCount' : '#fCustomer';
+        var target = c.kind === 'code' ? '#fCode' : '#fItem';
         var field = $(target);
         if (field) field.value = c.value;
         updateSaveState();
@@ -1980,8 +3181,7 @@ details.raw pre{
 
       var targets = [];
       if (values.code) targets.push({ v: String(values.code).replace(/\s+/g, ''), cls: '' });
-      if (values.weight) targets.push({ v: String(values.weight).replace(/\s+/g, ''), cls: 'blue' });
-      if (values.count) targets.push({ v: String(values.count).replace(/\s+/g, ''), cls: 'amber' });
+      if (values.item) targets.push({ v: String(values.item).replace(/\s+/g, ''), cls: 'blue' });
 
       function addBox(w, cls) {
         var b = w.bbox;
@@ -2095,6 +3295,7 @@ details.raw pre{
     c.height = Math.round(h * k);
     var ctx = c.getContext('2d');
     ctx.imageSmoothingEnabled = true;
+    if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, c.width, c.height);
     ctx.drawImage(srcCanvas, x, y, w, h, 0, 0, c.width, c.height);
@@ -2139,7 +3340,7 @@ details.raw pre{
     var tg = $('#tplToggle');
     if (tg) tg.textContent = state.useTemplate ? '自动：开' : '自动：关';
     var desc = $('#tplDesc');
-    if (desc) desc.textContent = state.useTemplate ? '批号 / 委托单位 · 自动套用' : '批号 / 委托单位 · 已暂停';
+    if (desc) desc.textContent = state.useTemplate ? '批号 / 外在装货物品 · 自动套用' : '批号 / 外在装货物品 · 已暂停';
   }
 
   function updateTplThumb() {
@@ -2187,20 +3388,26 @@ details.raw pre{
 
   /* ---------------- 自检 / 诊断 ---------------- */
 
+  var TEST_CODES = [
+    'PX32611016594', 'PX32611016591', 'PX32611016589',
+    'A326112101796', 'PX32611016578', 'PX32611016576'
+  ];
+
   function makeTestCanvas() {
     var c = document.createElement('canvas');
-    c.width = 1000;
-    c.height = 340;
+    c.width = 900;
+    c.height = 110 + TEST_CODES.length * 90;
     var ctx = c.getContext('2d');
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, c.width, c.height);
     ctx.fillStyle = '#111111';
     ctx.textBaseline = 'top';
-    ctx.font = 'bold 44px "Microsoft YaHei", "PingFang SC", "Heiti SC", sans-serif';
-    ctx.fillText('订单号：SG202611050017', 48, 44);
-    ctx.fillText('件数：3', 48, 140);
-    ctx.fillText('克重：12.6g', 340, 140);
-    ctx.fillText('客户：陈小姐', 48, 236);
+    ctx.font = 'bold 34px "Microsoft YaHei", "PingFang SC", "Heiti SC", sans-serif';
+    ctx.fillText('批号列表（测试样张）', 40, 26);
+    ctx.font = 'bold 40px "Consolas", "Microsoft YaHei", sans-serif';
+    TEST_CODES.forEach(function (code, i) {
+      ctx.fillText(code, 60, 96 + i * 90);
+    });
     return c;
   }
 
@@ -2210,13 +3417,35 @@ details.raw pre{
     state.busy = true;
     setBusyUI(true);
     $('#overlay').innerHTML = '';
-    setStatus('正在运行识别自检…', true);
-    setProgress(0.2);
+    setStatus('正在运行批量识别自检…', true);
+    setProgress(0.15);
 
-    analyze(canvas, null).then(function (out) {
-      applyOCR(out.data, out.parsed, { ms: out.ms, noBoxes: true });
-      var ok = out.parsed.code || out.parsed.weight || out.parsed.count;
-      toast(ok ? '自检通过，已填入示例字段（不会自动保存）' : '自检完成，但未解析出字段');
+    batchScan(canvas, { tiles: 1 }).then(function (out) {
+      $('#rawText').textContent = out.text.trim() || '（未识别到文字）';
+      var hit = 0;
+      TEST_CODES.forEach(function (code) {
+        if (out.codes.indexOf(code) >= 0) hit++;
+      });
+
+      var tag = $('#confTag');
+      tag.hidden = false;
+      tag.textContent = '自检 ' + hit + '/' + TEST_CODES.length + ' · 置信度 ' + out.conf + '%';
+      tag.className = 'conf' + (hit < 4 ? ' low' : '');
+
+      setProgress(1);
+      if (hit >= 4) {
+        setStatus('自检通过：批量识别正常（命中 ' + hit + '/' + TEST_CODES.length + '）', false);
+        toast('自检通过：批量识别命中 ' + hit + '/' + TEST_CODES.length);
+      } else if (out.codes.length) {
+        setStatus('自检部分通过：请确认网络与清晰度（' + hit + '/' + TEST_CODES.length + '）', false);
+        toast('自检部分通过：命中 ' + hit + '/' + TEST_CODES.length);
+      } else {
+        setStatus('自检失败：未识别到批号，请检查网络或稍后重试', false, true);
+        toast('自检失败：没有识别到批号');
+      }
+      ENGINE.last = {
+        at: Date.now(), conf: out.conf, chars: out.text.length, ms: out.ms, filled: hit
+      };
     }).catch(function (err) {
       handleOCRError(err);
     }).then(function () {
@@ -2262,7 +3491,7 @@ details.raw pre{
       '<li>确认地址栏是 <b>http://</b> 开头（file:// 会被浏览器禁止 OCR 线程）。</li>' +
       '<li>首次识别要下载中文语言包（约 15MB），网络慢请等待 1–2 分钟。</li>' +
       '<li>点「测试识别」：能出结果说明引擎正常，问题在照片清晰度或版式。</li>' +
-      '<li>用「框选识别」只框住单号或克重那一行，成功率最高。</li>' +
+      '<li>列表截图先用「批量识别列表」；只识别某一行可用「框选识别」，成功率最高。</li>' +
       '</ol></div>';
 
     html += '<div class="btn-row" style="margin-top:14px">' +
@@ -2414,24 +3643,70 @@ details.raw pre{
     var r = state.records.filter(function (x) { return x.id === id; })[0];
     if (!r) return;
 
+    var detailArea = r.area;
     var body = $('#detailBody');
     body.innerHTML =
       (r.thumb ? '<img class="detail-img" src="' + r.thumb + '" alt="订单照片">' : '') +
       '<div class="detail-grid">' +
-        '<div><span>单号</span><b>' + esc(r.code || '—') + '</b></div>' +
-        '<div><span>区域</span><b>' + esc(r.area) + '</b></div>' +
-        '<div><span>件数</span><b>' + (r.count ? esc(r.count) + ' 件' : '—') + '</b></div>' +
-        '<div><span>克重</span><b>' + (r.weight ? esc(r.weight) + ' g' : '—') + '</b></div>' +
-        '<div><span>客户</span><b>' + esc(r.customer || '—') + '</b></div>' +
+        '<div><span>批号</span><b>' + esc(r.code || '—') + '</b></div>' +
+        '<div><span>区域</span><b id="dAreaNow">' + esc(r.area) + '</b></div>' +
+        '<div><span>外在装货物品</span><b>' + esc(r.item || '—') + '</b></div>' +
         '<div><span>时间</span><b>' + fullTime(r.createdAt) + '</b></div>' +
       '</div>' +
+      '<p class="hint" style="margin-top:12px">改完点「保存修改」，记录会立即更新；批号重复时不会保存。</p>' +
+      '<div class="field" style="margin-top:10px"><label for="dCode">批号</label>' +
+        '<input id="dCode" value="' + esc(r.code) + '" autocomplete="off" spellcheck="false"></div>' +
+      '<div class="field" style="margin-top:10px"><label for="dItem">外在装货物品</label>' +
+        '<input id="dItem" value="' + esc(r.item) + '" placeholder="如 白框 / 黑袋" autocomplete="off"></div>' +
+      '<div class="field" style="margin-top:12px"><label>存放区域</label></div>' +
+      '<div class="area-pick" id="dAreaPick"></div>' +
       '<div class="btn-row" style="margin-top:14px">' +
+        '<button class="btn btn-primary" id="detailSave" type="button">保存修改</button>' +
         '<button class="btn btn-ghost" id="detailCopy" type="button">复制信息</button>' +
-        '<button class="btn btn-primary" id="detailGo" type="button">定位到 ' + esc(r.area) + '</button>' +
-      '</div>';
+      '</div>' +
+      '<button class="btn btn-ghost" id="detailGo" type="button" style="margin-top:10px">去识别页使用该区域</button>';
+
+    function renderDAreas() {
+      var wrap = $('#dAreaPick');
+      wrap.innerHTML = '';
+      state.areas.forEach(function (name) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = name === detailArea ? 'on' : '';
+        b.textContent = name;
+        b.addEventListener('click', function () {
+          detailArea = name;
+          $('#dAreaNow').textContent = name;
+          renderDAreas();
+          haptic();
+        });
+        wrap.appendChild(b);
+      });
+    }
+    renderDAreas();
+
+    $('#detailSave').addEventListener('click', function () {
+      var nextCode = normalizeCode($('#dCode').value);
+      if (!nextCode) { toast('批号不能为空'); $('#dCode').focus(); return; }
+      if (!detailArea) { toast('请选择区域'); return; }
+      var dup = findRecordByCode(nextCode);
+      if (dup && dup.id !== r.id) {
+        toast('该批号已在 ' + (dup.staged ? '暂存区' : dup.area) + ' · ' + timeStr(dup.createdAt));
+        return;
+      }
+      r.code = nextCode;
+      r.item = $('#dItem').value.trim();
+      r.area = detailArea;
+      r.staged = false;
+      persist();
+      renderAll();
+      closeSheets();
+      haptic();
+      toast('已保存修改');
+    });
 
     $('#detailCopy').addEventListener('click', function () {
-      var text = [r.code, r.customer, r.count ? r.count + '件' : '', r.weight ? r.weight + 'g' : '', r.area, fullTime(r.createdAt)]
+      var text = [r.code, r.item, detailArea, fullTime(r.createdAt)]
         .filter(Boolean).join(' | ');
       copyText(text).then(function (ok) {
         toast(ok ? '已复制' : '复制失败，请手动选择');
@@ -2439,12 +3714,12 @@ details.raw pre{
     });
 
     $('#detailGo').addEventListener('click', function () {
-      state.area = r.area;
-      if (state.areas.indexOf(r.area) < 0) state.areas.push(r.area);
+      state.area = detailArea;
+      if (state.areas.indexOf(detailArea) < 0) state.areas.push(detailArea);
       renderAreas();
       closeSheets();
       setView('scan');
-      toast('已选择区域 ' + r.area);
+      toast('已选择区域 ' + detailArea);
     });
 
     openSheet($('#detailSheet'));
@@ -2485,9 +3760,9 @@ details.raw pre{
 
   function exportCSV() {
     if (!state.records.length) { toast('还没有可导出的记录'); return; }
-    var lines = [['单号', '客户', '件数', '克重(g)', '区域', '时间'].join(',')];
+    var lines = [['批号', '外在装货物品', '区域', '时间'].join(',')];
     state.records.slice().sort(function (a, b) { return b.createdAt - a.createdAt; }).forEach(function (r) {
-      lines.push([r.code, r.customer, r.count, r.weight, r.area, fullTime(r.createdAt)].map(csvCell).join(','));
+      lines.push([r.code, r.item, r.staged ? '暂存区' : r.area, fullTime(r.createdAt)].map(csvCell).join(','));
     });
     var blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
     var url = URL.createObjectURL(blob);
@@ -2523,20 +3798,19 @@ details.raw pre{
   function seedSamples() {
     var now = Date.now();
     var samples = [
-      ['SG202611050017', '陈小姐', '3', '12.6', 'A1'],
-      ['SG202611050018', '阿杰', '1', '5.32', 'A2'],
-      ['SG202611050019', '林女士', '6', '28.9', 'B1'],
-      ['SG202611050020', '周先生', '2', '9.15', 'B3'],
-      ['SG202611050021', '苏苏', '4', '16.4', 'C2']
+      ['PX32611016594', '白框', 'A1'],
+      ['PX32611016591', '黑袋', 'A2'],
+      ['A326112101796', '白框', 'B1'],
+      ['PX32611016578', '黑袋', 'B3'],
+      ['PX32611016576', '白框', 'C2']
     ];
     samples.forEach(function (s, i) {
       state.records.push({
         id: uid(),
         code: s[0],
-        customer: s[1],
-        count: s[2],
-        weight: s[3],
-        area: s[4],
+        item: s[1],
+        area: s[2],
+        staged: false,
         createdAt: now - i * 17 * 60000 - 5 * 60000,
         thumb: ''
       });
@@ -2620,7 +3894,7 @@ details.raw pre{
       templateMode = true;
       $('#preview').classList.add('selecting');
       updateCropButtons();
-      setStatus('在图片上拖出固定识别区域（包住批号与委托单位）', false);
+      setStatus('在图片上拖出固定识别区域（包住批号那一行或整列批号）', false);
       $('#previewCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
@@ -2695,7 +3969,7 @@ details.raw pre{
       $('#fCode').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
-    ['fCode', 'fCount', 'fWeight', 'fCustomer'].forEach(function (id) {
+    ['fCode', 'fItem'].forEach(function (id) {
       $('#' + id).addEventListener('input', updateSaveState);
     });
 
@@ -2722,6 +3996,115 @@ details.raw pre{
     $('#btnExport').addEventListener('click', exportCSV);
     $('#btnClear').addEventListener('click', clearAll);
     $('#btnSeed').addEventListener('click', seedSamples);
+
+    /* 批量识别 */
+    $('#btnBatchScan').addEventListener('click', runBatchScan);
+    $('#btnBatchAll').addEventListener('click', function () {
+      state.batch.forEach(function (x) { x.checked = true; });
+      renderBatch();
+    });
+    $('#btnBatchNone').addEventListener('click', function () {
+      state.batch.forEach(function (x) { x.checked = false; });
+      renderBatch();
+    });
+    $('#btnBatchStage').addEventListener('click', stageBatch);
+    $('#btnBatchClear').addEventListener('click', function () {
+      clearBatch();
+      toast('已清空识别列表');
+    });
+    $('#btnBatchPaste').addEventListener('click', function () {
+      $('#pasteText').value = '';
+      openSheet($('#pasteSheet'));
+    });
+    $('#btnPasteParse').addEventListener('click', function () {
+      var codes = collectBatchCodes($('#pasteText').value);
+      if (!codes.length) { toast('没有找到像批号的内容（字母+数字，至少 8 位）'); return; }
+      var added = addBatchCodes(codes);
+      closeSheets();
+      toast(added ? '已加入 ' + added + ' 个批号' : '这些批号都已在列表中');
+    });
+    $('#btnPasteCancel').addEventListener('click', closeSheets);
+    $('#pasteClose').addEventListener('click', closeSheets);
+
+    /* 暂存区 */
+    $('#btnQuickStage').addEventListener('click', function () { setView('stage'); renderStage(); });
+    $('#btnStageAll').addEventListener('click', function () {
+      stageVisible.forEach(function (id) { state.stageSel[id] = true; });
+      renderStage();
+    });
+    $('#btnStageNone').addEventListener('click', function () {
+      state.stageSel = {};
+      renderStage();
+    });
+    var stageTimer = null;
+    $('#stageSearch').addEventListener('input', function (e) {
+      var raw = e.target.value;
+      var endSep = STAGE_END_SEP_RE.test(raw);
+      var parts = raw.split(STAGE_SEP_RE);
+      var rest = '';
+      var candidates;
+      if (endSep) {
+        candidates = parts;
+      } else {
+        rest = parts.pop() || '';
+        candidates = parts;
+      }
+      var valid = candidates.every(function (p) { return !p || normStageTerm(p); });
+      if (valid && candidates.length) {
+        candidates.forEach(function (p) { commitStageTerm(p); });
+        state.stageDraft = rest;
+        e.target.value = rest;
+        try { e.target.setSelectionRange(rest.length, rest.length); } catch (err) {}
+      } else {
+        state.stageDraft = raw;
+      }
+      var cb = $('#stageSearchClear');
+      if (cb) cb.hidden = !state.stageTerms.length && !state.stageDraft;
+      state.stageAutoSig = '';
+      clearTimeout(stageTimer);
+      stageTimer = setTimeout(renderStage, 70);
+    });
+    $('#stageSearch').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        var terms = parseStageTerms(state.stageDraft);
+        terms.forEach(function (t) { commitStageTerm(t); });
+        state.stageDraft = '';
+        e.target.value = '';
+        state.stageAutoSig = '';
+        clearTimeout(stageTimer);
+        renderStage();
+        return;
+      }
+      if (e.key === 'Backspace' && !e.target.value && state.stageTerms.length) {
+        e.preventDefault();
+        state.stageTerms.pop();
+        state.stageAutoSig = '';
+        renderStage();
+      }
+    });
+    $('#stageSearchClear').addEventListener('click', function () {
+      clearStageSearch();
+      renderStage();
+      haptic();
+    });
+    $('#btnStageDel').addEventListener('click', deleteStageSelected);
+    $('#btnStageAssign').addEventListener('click', assignStage);
+    $('#btnStageClear').addEventListener('click', clearStage);
+
+    /* 记录页：批量改区 / 去重整理 */
+    $('#btnMulti').addEventListener('click', function () { setMulti(!state.multi); });
+    $('#btnSelAll').addEventListener('click', function () {
+      state.records.forEach(function (r) { if (!r.staged) state.pick[r.id] = true; });
+      renderRecords();
+    });
+    $('#btnSelNone').addEventListener('click', function () { setMulti(false); });
+    $('#btnSelArea').addEventListener('click', openBulkArea);
+    $('#btnDedupe').addEventListener('click', openDedupe);
+    $('#btnDedupeApply').addEventListener('click', applyDedupe);
+    $('#dedupeClose').addEventListener('click', closeSheets);
+    $('#bulkAreaClose').addEventListener('click', closeSheets);
+    $('#bulkAreaCancel').addEventListener('click', closeSheets);
 
     $('#btnAreas').addEventListener('click', function () {
       renderAreaEditor();
@@ -2815,17 +4198,15 @@ details.raw pre{
   }
 
   function issueTitle(r) {
-    var s = (r.code || '无单号') + (r.customer ? ' · ' + r.customer : '');
+    var s = (r.code || '无批号') + (r.item ? ' · ' + r.item : '');
     return s.length > 120 ? s.slice(0, 120) : s;
   }
 
   function issueBody(r) {
     return JSON.stringify({
-      v: 1,
+      v: 2,
       code: r.code || '',
-      customer: r.customer || '',
-      count: r.count || '',
-      weight: r.weight || '',
+      item: r.item || '',
       area: r.area || '',
       createdAt: Number(r.createdAt) || Date.now()
     });
@@ -2838,10 +4219,9 @@ details.raw pre{
     return {
       gh: it.number,
       code: r.code || '',
-      customer: r.customer || '',
-      count: r.count || '',
-      weight: r.weight || '',
+      item: r.item || r.customer || '',
       area: r.area || '',
+      staged: false,
       createdAt: Number(r.createdAt) || (it.created_at ? new Date(it.created_at).getTime() : Date.now()),
       thumb: ''
     };
@@ -2936,10 +4316,9 @@ details.raw pre{
           state.records[idx] = {
             id: local.id,
             code: cloud.code,
-            customer: cloud.customer,
-            count: cloud.count,
-            weight: cloud.weight,
+            item: cloud.item,
             area: cloud.area,
+            staged: false,
             createdAt: cloud.createdAt,
             thumb: local.thumb || '',
             gh: numInt
@@ -2952,12 +4331,12 @@ details.raw pre{
         }
       });
 
-      // 本地没有 gh 的记录 → 上传创建 issue
-      var toPush = state.records.filter(function (r) { return !r.gh; });
+      // 本地没有 gh 的记录 → 上传创建 issue（暂存区里还没归位的记录不上传）
+      var toPush = state.records.filter(function (r) { return !r.gh && !r.staged; });
       var chain = Promise.resolve();
       toPush.forEach(function (r) {
         chain = chain.then(function () {
-          setCloudStatus('上传中… ' + (r.code || r.customer || '无单号'));
+          setCloudStatus('上传中… ' + (r.code || r.item || '无批号'));
           return createIssue(cfg, r).then(function (num) {
             if (num) { r.gh = num; changed = true; }
           });
@@ -3012,6 +4391,93 @@ details.raw pre{
     toast('已清除云同步配置');
   }
 
+  /* ---------------- 自检（?selftest 或控制台调用） ---------------- */
+
+  function runSelfTest() {
+    var results = [];
+    function check(name, cond, extra) {
+      results.push({ name: name, ok: !!cond, extra: extra ? String(extra) : '' });
+    }
+
+    var txt = '批号：PX32611016594\nPX32611016591\nPX32611016589\nA326112101796\n' +
+      'PX32611016578 PX32611016576\n2026-11-21 12.6g 3件 13800138000 PX3261101657O\n' +
+      '批号：PX32611 016594';
+    var codes = collectBatchCodes(txt);
+    var expect = 'PX32611016594,PX32611016591,PX32611016589,A326112101796,' +
+      'PX32611016578,PX32611016576,PX32611016570';
+    check('多行批号全部识别', codes.join(',') === expect, codes.join(','));
+    check('保持出现顺序', codes[0] === 'PX32611016594' && codes[2] === 'PX32611016589', codes.join(','));
+    check('被空格拆开也能粘回', codes.indexOf('PX32611016594') >= 0);
+    check('OCR 混淆 O→0', codes.indexOf('PX32611016570') >= 0, codes.join(','));
+    check('排除日期/手机号/克重', codes.indexOf('20261121') < 0 &&
+      codes.indexOf('13800138000') < 0 && codes.indexOf('12.6') < 0);
+    check('归一化：小写+空格', normalizeCode(' px32611o16594 ') === 'PX32611016594');
+    check('短码不误判', !isBatchCode('AB12'));
+    check('纯数字 11 位手机号不误判', !isBatchCode('13800138000'));
+    check('上限 500', collectBatchCodes(new Array(600).fill(0).map(function (_, i) {
+      return 'PX' + (32611000000 + i);
+    }).join('\n'), { limit: MAX_BATCH }).length <= MAX_BATCH);
+
+    // 首次录入判定（临时替换 state.records，测完还原）
+    var saved = state.records;
+    try {
+      state.records = [
+        { id: 'late', code: 'PX32611016594', area: 'A2', staged: false, createdAt: 2000 },
+        { id: 'early', code: 'px32611016594', area: 'A1', staged: false, createdAt: 1000 }
+      ];
+      buildFirstMap();
+      check('首次有效录入=最早一条', firstIdByCode[codeKey('PX32611016594')].id === 'early');
+      check('重复计数', codeCount[codeKey('PX32611016594')] === 2);
+    } finally {
+      state.records = saved;
+      buildFirstMap();
+    }
+
+    check('批量识别面板存在', !!$('#batchPanel') && !!$('#batchList'));
+    check('批量识别按钮存在', !!$('#btnBatchScan'));
+    check('暂存区搜索框存在', !!$('#stageSearch') && !!$('#stageMatch') && !!$('#stageTerms'));
+    check('暂存搜索：后 4 位命中', matchStageCode('PX32611016724', ['6724']));
+    check('暂存搜索：后 4 位不误配', !matchStageCode('PX32611016724', ['6725']));
+    check('暂存搜索：多个关键词', matchStageCode('PX32611016706', ['6724', '6706']));
+    check('暂存搜索：中间一段', matchStageCode('PX32611016724', ['110167']));
+    check('暂存搜索：少于 3 位忽略', parseStageTerms('12 6724').length === 1);
+    check('暂存搜索：空格/逗号/顿号/加号都可分隔',
+      parseStageTerms('6724 6701，6643、6501+6721').length === 5,
+      parseStageTerms('6724 6701，6643、6501+6721').join('|'));
+    check('暂存搜索：尾号去重', parseStageTerms('6724,6724').length === 1);
+    check('批量识别白名单', CODE_WHITELIST.indexOf('A') === 0 && CODE_WHITELIST.indexOf('O') > 0);
+    check('暂存区区域宫格已渲染', $('#stageAreaGrid').children.length === state.areas.length,
+      $('#stageAreaGrid').children.length + '/' + state.areas.length);
+    check('记录页三枚页签', $$('.tab').length === 3);
+    check('克重/件数字段已移除', !$('#fCount') && !$('#fWeight') && !!$('#fItem'));
+    check('外在装货物品提示为白框/黑袋', /白框/.test(($('#fItem') || {}).placeholder || ''));
+    check('文本解析：物品=白框', parseText('批号：PX32611016594 外在装货物品：白框').item === '白框');
+    check('文本解析：批号', parseText('批号：PX32611016594').code === 'PX32611016594');
+
+    var okN = results.filter(function (r) { return r.ok; }).length;
+    var pass = okN === results.length;
+    document.title = 'SELFTEST ' + (pass ? 'OK' : 'FAIL') + ' ' + okN + '/' + results.length;
+
+    var pre = document.createElement('pre');
+    pre.id = 'selftest';
+    pre.style.cssText = 'position:fixed;left:0;top:0;z-index:9999;background:#fff;color:#111;' +
+      'font:12px/1.5 monospace;padding:8px;max-height:100%;overflow:auto;white-space:pre-wrap;';
+    pre.textContent = 'SELFTEST ' + (pass ? 'OK' : 'FAIL') + ' ' + okN + '/' + results.length + '\n' +
+      results.map(function (r) {
+        return (r.ok ? '✔ ' : '✘ ') + r.name + (r.extra ? '  [' + r.extra + ']' : '');
+      }).join('\n');
+    document.body.appendChild(pre);
+
+    return { pass: pass, total: results.length, ok: okN, results: results };
+  }
+
+  function demoBatch(url) {
+    return loadImage(url).then(function (img) {
+      var out = prepare(img);
+      return batchScan(out.canvas, {});
+    });
+  }
+
   /* ---------------- 启动 ---------------- */
 
   function init() {
@@ -3020,7 +4486,9 @@ details.raw pre{
     bind();
     renderAll();
     renderTemplateUI();
+    renderBatch();
     updateSaveState();
+    updateSelBar();
 
     if (location.protocol === 'file:') {
       showEnvBanner('本地文件模式下识别可能失败', '浏览器会禁止 file:// 页面的 OCR 线程。请双击「启动服务.bat」用 http://localhost 打开，或部署到服务器后访问。');
@@ -3042,7 +4510,29 @@ details.raw pre{
         refreshEngineUI();
       });
     }, 900);
+
+    if (location.hash === '#selftest') {
+      setTimeout(runSelfTest, 200);
+    }
   }
+
+  // 供自检页 / 控制台调试使用（不影响正常操作）
+  window.__OL__ = {
+    version: '2.1',
+    state: state,
+    parseCodes: collectBatchCodes,
+    normalizeCode: normalizeCode,
+    isBatchCode: isBatchCode,
+    dedupeGroups: dedupeGroups,
+    buildFirstMap: buildFirstMap,
+    renderAll: renderAll,
+    selfTest: runSelfTest,
+    demoBatch: demoBatch,
+    setView: setView,
+    stageTerms: parseStageTerms,
+    stageMatch: matchStageCode,
+    storageKey: STORE_KEY
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
